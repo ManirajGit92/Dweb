@@ -19,7 +19,7 @@ export class AppComponent {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.createMessage();
+    // this.createMessage();
   }
 
   scrollTo(sectionId: string, event: Event) {

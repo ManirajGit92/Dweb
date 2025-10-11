@@ -1,0 +1,21 @@
+<!-- <section> -->
+<div class="slider-container">
+  <!-- IMAGE SLIDER -->
+  <div class="image-slider" [style.backgroundImage]="'url(' + images[currentImageIndex] + ')'">
+    <div class="overlay"></div>
+  </div>
+
+  <!-- TEXT SLIDER -->
+  <div class="text-slider">
+    <h2 [@fadeAnimation]="currentTextIndex">{{ texts[currentTextIndex].title }}</h2>
+    <p [@fadeAnimation]="currentTextIndex">{{ texts[currentTextIndex].description }}</p>
+
+    <button class="action-btn">Learn More</button>
+  </div>
+
+  <!-- NAVIGATION BUTTONS -->
+  <button class="nav-btn prev" (click)="prevSlide()">&#10094;</button>
+  <button class="nav-btn next" (click)="nextSlide()">&#10095;</button>
+</div>
+
+<!-- </section> -->

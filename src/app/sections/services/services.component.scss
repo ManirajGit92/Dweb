@@ -1,0 +1,112 @@
+// section {
+//   min-height: 100vh;
+//   padding: 120px 80px 60px;
+//   background-color: #f3f4f6;
+// }
+
+// h2 {
+//   font-size: 2.5rem;
+//   margin-bottom: 20px;
+//   color: #1f2937;
+// }
+
+// p {
+//   max-width: 700px;
+//   color: #4b5563;
+// }
+/* Overall page container */
+.services-container {
+  padding: 60px 80px;
+  text-align: center;
+  background: linear-gradient(180deg, #f9fbfd, #eef2f6);
+  min-height: 100vh;
+}
+
+/* Page title */
+.page-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #1a237e;
+  letter-spacing: 0.5px;
+}
+
+/* Scrollable container */
+.cards-scroll-container {
+  height: 70vh; /* Show only 2 rows at a time */
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+}
+
+.cards-scroll-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+/* Grid layout for 3 columns */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 25px;
+  padding: 10px;
+}
+
+/* Each card style */
+.service-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  padding: 25px;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+  cursor: pointer;
+}
+
+.service-card h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #283593;
+  margin-bottom: 10px;
+}
+
+.service-card p {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Hover and animation effects */
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  background: #f4f6ff;
+}
+
+/* Smooth fade-up animation when cards enter view */
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.service-card {
+  animation: fadeUp 0.8s ease forwards;
+}
+
+.scroll-btn {
+  margin-top: 20px;
+  padding: 12px 28px;
+  border: none;
+  background-color: #1a237e;
+  color: #fff;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.scroll-btn:hover {
+  background-color: #3949ab;
+}

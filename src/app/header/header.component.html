@@ -1,0 +1,15 @@
+<header [class.shrink]="isShrunk">
+  <div class="logo">
+    <img src="https://cdn-icons-png.flaticon.com/512/5968/5968672.png" alt="Logo">
+    <span>MyWebsite</span>
+  </div>
+  <nav>
+    <ul>
+      <li><a (click)="scrollTo('home')">Home</a></li>
+      <li><a (click)="scrollTo('about')">About</a></li>
+      <li><a (click)="scrollTo('services')">Services</a></li>
+      <li><a (click)="scrollTo('contact')">Contact</a></li>
+      <li><a (click)="scrollTo('portfolio')">Portfolio</a></li>
+    </ul>
+  </nav>
+</header>

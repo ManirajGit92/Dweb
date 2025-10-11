@@ -1,13 +1,32 @@
-<nav class="navbar">
+<app-header></app-header>
+
+<main>
+  <app-home id="home"></app-home>
+  <app-about id="about"></app-about>
+  <app-services id="services"></app-services>
+  <app-contact id="contact"></app-contact>
+</main>
+<app-footer></app-footer>
+<!-- <nav class="navbar">
   <ul>
     <li><a href="#home" (click)="scrollTo('home', $event)">Home</a></li>
-    <li><a href="#about" (click)="scrollTo('about', $event)">About</a></li>
+    <li><a href="#about" (click)="scrollTo('about', $event)">AboutUs</a></li>
     <li><a href="#services" (click)="scrollTo('services', $event)">Services</a></li>
-    <li><a href="#contact" (click)="scrollTo('contact', $event)">Contact</a></li>
+    <li><a href="#contact" (click)="scrollTo('contact', $event)">ContactUs</a></li>
+    <li><a href="#login" (click)="scrollTo('contact', $event)">Login</a></li>
   </ul>
 </nav>
 
-<div id="home" class="section home">Home Section {{ data | json }}</div>
-<div id="about" class="section about">About Section</div>
-<div id="services" class="section services">Services Section</div>
-<div id="contact" class="section contact">Contact Section</div>
+<div id="home" class="section home">
+ Home Section {{ data | json }}
+  <app-home></app-home>
+</div>
+<div id="about" class="section about">
+  <app-about-us></app-about-us>
+</div>
+<div id="services" class="section services">
+  <app-our-services></app-our-services>
+</div>
+<div id="contact" class="section contact">
+  <app-contact-us></app-contact-us>
+</div> -->

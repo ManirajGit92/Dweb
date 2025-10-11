@@ -7,11 +7,11 @@ import {
   animate,
   state,
 } from '@angular/animations';
-
+import { CardModule } from 'primeng/card';
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CardModule],
   templateUrl: './about.component.html',
   styleUrl: './about.component.scss',
   animations: [

@@ -3,37 +3,39 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 // Define the data model (same as your FastAPI schema)
-export interface Content {
+export interface Users {
   id?: number;
-  title: string;
-  body: string;
+  username: string;
+  emailaddress: string;
+  phonenumber: string;
+  password: string;
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class CrudService {
-  private apiUrl = 'http://127.0.0.1:8000/content'; // FastAPI base URL
+  private apiUrl = 'http://127.0.0.1:8000/users'; // FastAPI base URL
 
   constructor(private http: HttpClient) {}
 
   // CREATE
-  addContent(data: Content): Observable<any> {
+  addContent(data: Users): Observable<any> {
     return this.http.post(this.apiUrl, data);
   }
 
   // READ ALL
-  getAllContent(): Observable<Content[]> {
-    return this.http.get<Content[]>(this.apiUrl);
+  getAllContent(): Observable<Users[]> {
+    return this.http.get<Users[]>(this.apiUrl);
   }
 
   // READ SINGLE
-  getContentById(id: number): Observable<Content> {
-    return this.http.get<Content>(`${this.apiUrl}/${id}`);
+  getContentById(id: number): Observable<Users> {
+    return this.http.get<Users>(`${this.apiUrl}/${id}`);
   }
 
   // UPDATE
-  updateContent(id: number, data: Content): Observable<any> {
+  updateContent(id: number, data: Users): Observable<any> {
     return this.http.put(`${this.apiUrl}/${id}`, data);
   }
 

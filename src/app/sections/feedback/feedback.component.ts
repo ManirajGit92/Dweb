@@ -70,7 +70,6 @@ export class FeedbackComponent {
   ];
 
   submitFeedback() {
-    console.log('Feedback submitted:', this.questions);
     alert('Thank you for your feedback!');
   }
 }

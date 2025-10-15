@@ -27,7 +27,6 @@ export class HeaderComponent {
 
   navigate(route: string) {
     // Implement navigation logic here, e.g., using Angular Router
-    console.log(`Navigating to ${route}`);
     this.router.navigate([route]);
   }
 }

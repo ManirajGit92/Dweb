@@ -7,7 +7,7 @@
     </span>
   </div>
 
-  <p-table #dt [value]="users" [(selection)]="selectedUsers" dataKey="id" editMode="row" [scrollable]="true"
+  <p-table #dt [value]="tableData.body" [(selection)]="selectedData" dataKey="id" editMode="row" [scrollable]="true"
     scrollHeight="400px" [resizableColumns]="true" columnResizeMode="fit" [reorderableColumns]="true"
     [globalFilterFields]="['id','name','email','phone','password']" styleClass="p-datatable-gridlines">
     <!-- Frozen Header -->
@@ -49,19 +49,19 @@
     </ng-template>
 
     <!-- Table Body -->
-    <ng-template pTemplate="body" let-user let-editing="editing" let-ri="rowIndex" let-rowElement="rowElement">
-      <tr [pSelectableRow]="user">
+    <ng-template pTemplate="body" let-data let-editing="editing" let-ri="rowIndex" let-rowElement="rowElement">
+      <tr [pSelectableRow]="data">
         <td>
-          <p-tableCheckbox [value]="user"></p-tableCheckbox>
+          <p-tableCheckbox [value]="data"></p-tableCheckbox>
         </td>
 
         <td>
           <p-cellEditor>
             <ng-template pTemplate="input">
-              <input pInputText [(ngModel)]="user.id" />
+              <input pInputText [(ngModel)]="data.id" />
             </ng-template>
             <ng-template pTemplate="output">
-              {{ user.id }}
+              {{ data.id }}
             </ng-template>
           </p-cellEditor>
         </td>
@@ -69,10 +69,10 @@
         <td>
           <p-cellEditor>
             <ng-template pTemplate="input">
-              <input pInputText [(ngModel)]="user.name" />
+              <input pInputText [(ngModel)]="data.name" />
             </ng-template>
             <ng-template pTemplate="output">
-              {{ user.name }}
+              {{ data.name }}
             </ng-template>
           </p-cellEditor>
         </td>
@@ -80,10 +80,10 @@
         <td>
           <p-cellEditor>
             <ng-template pTemplate="input">
-              <input pInputText [(ngModel)]="user.email" />
+              <input pInputText [(ngModel)]="data.email" />
             </ng-template>
             <ng-template pTemplate="output">
-              {{ user.email }}
+              {{ data.email }}
             </ng-template>
           </p-cellEditor>
         </td>
@@ -91,10 +91,10 @@
         <td>
           <p-cellEditor>
             <ng-template pTemplate="input">
-              <input pInputText [(ngModel)]="user.phone" />
+              <input pInputText [(ngModel)]="data.phone" />
             </ng-template>
             <ng-template pTemplate="output">
-              {{ user.phone }}
+              {{ data.phone }}
             </ng-template>
           </p-cellEditor>
         </td>
@@ -102,23 +102,23 @@
         <td>
           <p-cellEditor>
             <ng-template pTemplate="input">
-              <input pInputText [(ngModel)]="user.password" />
+              <input pInputText [(ngModel)]="data.password" />
             </ng-template>
             <ng-template pTemplate="output">
-              {{ user.password }}
+              {{ data.password }}
             </ng-template>
           </p-cellEditor>
         </td>
 
         <td>
           <button *ngIf="!editing" pButton icon="pi pi-pencil" class="p-button-text p-button-sm"
-            (click)="dt.initRowEdit(user)"></button>
+            (click)="editData(1,data)"></button>
 
-          <button *ngIf="editing" pButton icon="pi pi-check" class="p-button-text p-button-success p-button-sm"
+          <!-- <button *ngIf="editing" pButton icon="pi pi-check" class="p-button-text p-button-success p-button-sm"
             (click)="dt.saveRowEdit(user, rowElement)"></button>
 
           <button *ngIf="editing" pButton icon="pi pi-times" class="p-button-text p-button-danger p-button-sm"
-            (click)="dt.cancelRowEdit(user)"></button>
+            (click)="dt.cancelRowEdit(user)"></button> -->
         </td>
       </tr>
     </ng-template>

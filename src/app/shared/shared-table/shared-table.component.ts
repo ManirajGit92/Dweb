@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
 import { FormsModule } from '@angular/forms';
@@ -28,89 +28,16 @@ interface User {
   styleUrl: './shared-table.component.scss',
 })
 export class SharedTableComponent {
-  users: User[] = [];
-  selectedUsers: User[] = [];
+  @Input() tableData: any;
+  @Input() tableConfig: any;
+  @Output() emitTableData = new EventEmitter<any>();
+  selectedData: any[] = [];
   clonedUsers: { [s: string]: User } = {};
   globalFilter: string = '';
 
-  constructor() {
-    this.generateSampleData();
-  }
+  constructor() {}
 
-  generateSampleData() {
-    this.users = [
-      {
-        id: 1,
-        name: 'Maniraj',
-        email: 'mani1@mail.com',
-        phone: '9876543210',
-        password: 'pass123',
-      },
-      {
-        id: 2,
-        name: 'Karthik',
-        email: 'karthik@mail.com',
-        phone: '9876543211',
-        password: 'test123',
-      },
-      {
-        id: 3,
-        name: 'Ravi',
-        email: 'ravi@mail.com',
-        phone: '9876543212',
-        password: 'ravi123',
-      },
-      {
-        id: 4,
-        name: 'Suresh',
-        email: 'suresh@mail.com',
-        phone: '9876543213',
-        password: 'sure123',
-      },
-      {
-        id: 5,
-        name: 'Vignesh',
-        email: 'vignesh@mail.com',
-        phone: '9876543214',
-        password: 'vig123',
-      },
-      {
-        id: 6,
-        name: 'Anand',
-        email: 'anand@mail.com',
-        phone: '9876543215',
-        password: 'anand123',
-      },
-      {
-        id: 7,
-        name: 'Priya',
-        email: 'priya@mail.com',
-        phone: '9876543216',
-        password: 'priya123',
-      },
-      {
-        id: 8,
-        name: 'Kiran',
-        email: 'kiran@mail.com',
-        phone: '9876543217',
-        password: 'kiran123',
-      },
-      {
-        id: 9,
-        name: 'Devi',
-        email: 'devi@mail.com',
-        phone: '9876543218',
-        password: 'devi123',
-      },
-      {
-        id: 10,
-        name: 'Arun',
-        email: 'arun@mail.com',
-        phone: '9876543219',
-        password: 'arun123',
-      },
-    ];
-  }
+  ngOnInit() {}
 
   onRowEditInit(user: User) {
     this.clonedUsers[user.id] = { ...user };
@@ -121,7 +48,11 @@ export class SharedTableComponent {
   }
 
   onRowEditCancel(user: User, index: number) {
-    this.users[index] = this.clonedUsers[user.id];
+    this.tableData.body[index] = this.clonedUsers[user.id];
     delete this.clonedUsers[user.id];
+  }
+
+  editData(index: number, selected: any) {
+    this.emitTableData.emit(selected);
   }
 }

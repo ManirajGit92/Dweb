@@ -59,7 +59,6 @@ export class AdminComponent {
 
   selectMenu(index: number) {
     this.selectedMenu = index;
-    console.log(`Selected Item:`, this.menuItems[index]);
     if (this.menuItems[index]?.toLowerCase() === 'back') {
       this.router.navigate(['main']);
     }

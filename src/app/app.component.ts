@@ -13,7 +13,6 @@ import { HomeComponent } from './sections/home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { ScheduleComponent } from './sections/schedule/schedule.component';
 import { FeedbackComponent } from './sections/feedback/feedback.component';
-import { ContentComponent } from './content/content.component';
 import { UsersComponent } from './users/users.component';
 
 @Component({
@@ -32,7 +31,6 @@ import { UsersComponent } from './users/users.component';
     FooterComponent,
     ScheduleComponent,
     FeedbackComponent,
-    ContentComponent,
     UsersComponent,
   ],
   templateUrl: './app.component.html',

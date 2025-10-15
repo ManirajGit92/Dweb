@@ -1,1 +1,53 @@
-<p>signup works!</p>
+<div class="auth-container">
+  <div class="auth-card">
+    <h2>Sign Up</h2>
+
+    <div class="p-field">
+      <p-floatLabel>
+        <input id="username" pInputText [(ngModel)]="user.username" />
+        <label for="username">Username</label>
+      </p-floatLabel>
+    </div>
+
+    <div class="p-field">
+      <p-floatLabel>
+        <input id="email" pInputText [(ngModel)]="user.email" />
+        <label for="email">Email</label>
+      </p-floatLabel>
+    </div>
+
+    <div class="p-field password-field">
+      <p-floatLabel>
+        <input id="password" pInputText [type]="showPassword ? 'text' : 'password'" [(ngModel)]="user.password" />
+        <label for="password">Password</label>
+      </p-floatLabel>
+      <i class="pi" [ngClass]="showPassword ? 'pi-eye-slash' : 'pi-eye'" (click)="togglePassword('password')"></i>
+    </div>
+
+    <div class="p-field password-field">
+      <p-floatLabel>
+        <input id="confirmPassword" pInputText [type]="showConfirmPassword ? 'text' : 'password'"
+          [(ngModel)]="user.confirmPassword" />
+        <label for="confirmPassword">Confirm Password</label>
+      </p-floatLabel>
+      <i class="pi" [ngClass]="showConfirmPassword ? 'pi-eye-slash' : 'pi-eye'" (click)="togglePassword('confirm')"></i>
+    </div>
+
+    <div class="p-field">
+      <p-floatLabel>
+        <input id="phone" pInputText [(ngModel)]="user.phone" />
+        <label for="phone">Phone Number</label>
+      </p-floatLabel>
+    </div>
+
+    <div class="p-field">
+      <p-floatLabel>
+        <input id="otp" pInputText [(ngModel)]="user.otp" />
+        <label for="otp">OTP</label>
+      </p-floatLabel>
+    </div>
+
+    <button pButton label="Sign Up" class="p-button-rounded p-button-success" (click)="signup()"></button>
+    <button pButton label="Login" class="p-button-rounded p-button-success" (click)="login()"></button>
+  </div>
+</div>

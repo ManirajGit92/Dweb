@@ -1,0 +1,26 @@
+.table-container {
+  padding: 20px;
+}
+
+.global-search {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.column-filter {
+  width: 100%;
+  margin-top: 5px;
+}
+
+.p-datatable {
+  border-radius: 10px;
+}
+
+th {
+  background-color: #f3f4f6;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}

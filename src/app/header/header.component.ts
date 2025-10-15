@@ -1,4 +1,5 @@
 import { Component, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +11,8 @@ import { Component, HostListener } from '@angular/core';
 export class HeaderComponent {
   isShrunk = false;
 
+  constructor(private router: Router) {}
+
   @HostListener('window:scroll')
   onScroll() {
     this.isShrunk = window.scrollY > 80;
@@ -20,5 +23,11 @@ export class HeaderComponent {
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
+  }
+
+  navigate(route: string) {
+    // Implement navigation logic here, e.g., using Angular Router
+    console.log(`Navigating to ${route}`);
+    this.router.navigate([route]);
   }
 }

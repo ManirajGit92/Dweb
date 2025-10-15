@@ -1,0 +1,126 @@
+<div class="table-container">
+  <div class="global-search">
+    <span class="p-input-icon-left">
+      <i class="pi pi-search"></i>
+      <input #globalFilter pInputText type="text" placeholder="Global Search" [(ngModel)]="globalFilter"
+        (input)="dt.filterGlobal(globalFilter.value, 'contains')" />
+    </span>
+  </div>
+
+  <p-table #dt [value]="users" [(selection)]="selectedUsers" dataKey="id" editMode="row" [scrollable]="true"
+    scrollHeight="400px" [resizableColumns]="true" columnResizeMode="fit" [reorderableColumns]="true"
+    [globalFilterFields]="['id','name','email','phone','password']" styleClass="p-datatable-gridlines">
+    <!-- Frozen Header -->
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 3rem">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th pResizableColumn pReorderableColumn pSortableColumn field="id">ID
+          <p-sortIcon field="id"></p-sortIcon>
+          <!-- <input pInputText type="text" (input)="dt.filter($event.target.value, 'id', 'contains')"
+            placeholder="Filter ID" class="column-filter" /> -->
+          <input #idFilter pInputText type="text" (input)="dt.filter(idFilter.value, 'id', 'contains')"
+            placeholder="Filter ID" class="column-filter" />
+        </th>
+        <th pResizableColumn pReorderableColumn pSortableColumn field="name">Name
+          <p-sortIcon field="name"></p-sortIcon>
+          <input #nameFilter pInputText type="text" (input)="dt.filter(nameFilter.value, 'name', 'contains')"
+            placeholder="Filter Name" class="column-filter" />
+        </th>
+        <th pResizableColumn pReorderableColumn pSortableColumn field="email">Email
+          <p-sortIcon field="email"></p-sortIcon>
+          <input #emailFilter pInputText type="text" (input)="dt.filter(emailFilter.value, 'email', 'contains')"
+            placeholder="Filter Email" class="column-filter" />
+        </th>
+        <th pResizableColumn pReorderableColumn pSortableColumn field="phone">Phone
+          <p-sortIcon field="phone"></p-sortIcon>
+          <input #phoneFilter pInputText type="text" (input)="dt.filter(phoneFilter.value, 'phone', 'contains')"
+            placeholder="Filter Phone" class="column-filter" />
+        </th>
+        <th pResizableColumn pReorderableColumn pSortableColumn field="password">Password
+          <p-sortIcon field="password"></p-sortIcon>
+          <input #passwordFilter pInputText type="text"
+            (input)="dt.filter(passwordFilter.value, 'password', 'contains')" placeholder="Filter Password"
+            class="column-filter" />
+        </th>
+        <th style="width: 8rem">Actions</th>
+      </tr>
+    </ng-template>
+
+    <!-- Table Body -->
+    <ng-template pTemplate="body" let-user let-editing="editing" let-ri="rowIndex" let-rowElement="rowElement">
+      <tr [pSelectableRow]="user">
+        <td>
+          <p-tableCheckbox [value]="user"></p-tableCheckbox>
+        </td>
+
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText [(ngModel)]="user.id" />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ user.id }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText [(ngModel)]="user.name" />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ user.name }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText [(ngModel)]="user.email" />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ user.email }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText [(ngModel)]="user.phone" />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ user.phone }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText [(ngModel)]="user.password" />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ user.password }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+
+        <td>
+          <button *ngIf="!editing" pButton icon="pi pi-pencil" class="p-button-text p-button-sm"
+            (click)="dt.initRowEdit(user)"></button>
+
+          <button *ngIf="editing" pButton icon="pi pi-check" class="p-button-text p-button-success p-button-sm"
+            (click)="dt.saveRowEdit(user, rowElement)"></button>
+
+          <button *ngIf="editing" pButton icon="pi pi-times" class="p-button-text p-button-danger p-button-sm"
+            (click)="dt.cancelRowEdit(user)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

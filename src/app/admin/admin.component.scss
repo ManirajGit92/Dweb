@@ -1,0 +1,96 @@
+/* Container Layout */
+.container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Sidebar */
+.sidebar {
+  position: relative;
+  width: 220px;
+  background: linear-gradient(180deg, #0a192f, #1e2a47);
+  color: #fff;
+  transition: width 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.closed {
+  width: 60px;
+}
+
+/* Sidebar Header */
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: #112240;
+}
+
+.toggle-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* Menu List */
+.menu {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-grow: 1;
+}
+
+.menu li {
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.menu li:hover {
+  color: #64ffda;
+}
+
+.menu li.active {
+  color: #64ffda;
+  font-weight: 600;
+}
+
+/* Smooth highlight animation */
+.highlight {
+  position: absolute;
+  left: 0;
+  width: 5px;
+  height: 45px;
+  background-color: #64ffda;
+  border-radius: 0 4px 4px 0;
+  transition: top 0.3s ease;
+}
+
+/* Footer */
+.sidebar-footer {
+  padding: 10px;
+  text-align: center;
+  background: #112240;
+  font-size: 14px;
+}
+
+/* Content Area */
+.content {
+  flex-grow: 1;
+  background-color: #f5f7fa;
+  padding: 30px;
+  transition: all 0.3s ease-in-out;
+}
+
+.content h1 {
+  color: #1e2a47;
+}

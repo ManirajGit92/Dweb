@@ -1,1 +1,24 @@
-<p>login works!</p>
+<div class="auth-container">
+  <div class="auth-card">
+    <h2>Login</h2>
+
+    <div class="p-field">
+      <p-floatLabel>
+        <input id="username" pInputText [(ngModel)]="username" />
+        <label for="username">Username or Email</label>
+      </p-floatLabel>
+    </div>
+
+    <div class="p-field password-field">
+      <p-floatLabel>
+        <input id="password" pInputText [type]="showPassword ? 'text' : 'password'" [(ngModel)]="password" />
+        <label for="password">Password</label>
+      </p-floatLabel>
+      <i class="pi" [ngClass]="showPassword ? 'pi-eye-slash' : 'pi-eye'" (click)="togglePassword()"></i>
+    </div>
+
+    <button pButton label="Login" class="p-button-rounded p-button-primary" (click)="login()"></button>
+    <button pButton label="Signup" class="p-button-rounded p-button-primary" (click)="signup()"></button>
+    <button pButton label="Back" class="p-button-rounded p-button-primary" (click)="back()"></button>
+  </div>
+</div>

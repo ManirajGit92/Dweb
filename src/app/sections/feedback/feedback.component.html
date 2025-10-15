@@ -1,0 +1,24 @@
+<div class="feedback-container">
+  <h2 class="feedback-title">We Value Your Feedback</h2>
+  <!-- <p class="feedback-subtitle">Please take a moment to answer a few quick questions</p> -->
+
+  <div class="feedback-scroll">
+    <div class="feedback-question" *ngFor="let question of questions">
+      <h4>{{ question.text }}</h4>
+      <div class="options" *ngFor="let option of question.options">
+
+        <!-- <p-checkbox [binary]="false" name="{{ question.id }}" [value]="option" [(ngModel)]="question.selectedOptions"
+          inputId="{{ question.id + '-' + option }}">
+        </p-checkbox> -->
+        <p-radioButton name="{{ question.id }}" [value]="option" [(ngModel)]="question.selectedOptions"
+          inputId="{{ question.id + '-' + option }}">
+        </p-radioButton>
+        <label [for]="question.id + '-' + option">{{ option }}</label>
+      </div>
+    </div>
+    <div class="submit-section">
+      <button pButton label="Submit Feedback" (click)="submitFeedback()"
+        class="p-button-rounded p-button-success"></button>
+    </div>
+  </div>
+</div>

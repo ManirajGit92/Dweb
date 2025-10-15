@@ -1,0 +1,51 @@
+.appointment-container {
+  display: flex;
+  gap: 30px;
+  padding: 40px;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+  flex-wrap: wrap;
+}
+
+.form-section,
+.calendar-section {
+  flex: 1;
+  min-width: 450px;
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 25px 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+h2 {
+  color: #3f51b5;
+  margin-bottom: 20px;
+}
+
+.p-field {
+  margin-bottom: 15px;
+}
+
+button[pButton] {
+  margin-top: 10px;
+  width: 100%;
+  border-radius: 25px;
+}
+
+.calendar-section full-calendar {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Responsive layout */
+@media (max-width: 992px) {
+  .appointment-container {
+    flex-direction: column;
+  }
+
+  .form-section,
+  .calendar-section {
+    min-width: 100%;
+  }
+}

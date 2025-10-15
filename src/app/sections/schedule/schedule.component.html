@@ -1,0 +1,52 @@
+<div class="appointment-container">
+  <!-- Left: Appointment Form -->
+  <div class="form-section p-card">
+    <h2>Book Appointment</h2>
+
+    <div class="p-fluid">
+      <div class="p-field">
+        <label for="name">Name</label>
+        <input id="name" pInputText [(ngModel)]="name" placeholder="Enter your name" />
+      </div>
+
+      <div class="p-field">
+        <label for="dob">Date of Birth</label>
+        <p-calendar id="dob" [(ngModel)]="dob" dateFormat="dd/mm/yy" showIcon="true"></p-calendar>
+      </div>
+
+      <div class="p-field">
+        <label for="contact">Contact Number</label>
+        <input id="contact" pInputText [(ngModel)]="contact" placeholder="Enter your phone number" />
+      </div>
+
+      <div class="p-field">
+        <label for="appointmentDate">Appointment Date</label>
+        <p-calendar id="appointmentDate" [(ngModel)]="appointmentDate" dateFormat="dd/mm/yy"
+          showIcon="true"></p-calendar>
+      </div>
+
+      <div class="p-field">
+        <label for="appointmentTime">Appointment Time</label>
+        <input id="appointmentTime" pInputText type="time" [(ngModel)]="appointmentTime" />
+      </div>
+
+      <div class="p-field">
+        <label for="reason">Reason</label>
+        <p-dropdown [options]="reasons" [(ngModel)]="reason" placeholder="Select reason"></p-dropdown>
+      </div>
+
+      <div class="p-field">
+        <label for="notes">Notes</label>
+        <textarea id="notes" pInputTextarea rows="4" [(ngModel)]="notes" placeholder="Additional details..."></textarea>
+      </div>
+
+      <button pButton type="button" label="Book Appointment" icon="pi pi-check" (click)="submitAppointment()"></button>
+    </div>
+  </div>
+
+  <!-- Right: Full Calendar -->
+  <div class="calendar-section p-card">
+    <h2>Scheduled Appointments</h2>
+    <full-calendar [options]="calendarOptions"></full-calendar>
+  </div>
+</div>

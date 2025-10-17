@@ -1,0 +1,45 @@
+.table-container {
+  padding: 0rem;
+
+  .p-toolbar {
+    margin-bottom: 0.5rem;
+  }
+}
+:host ::ng-deep {
+  .p-datatable .p-datatable-thead > tr > th {
+    padding: 0.5rem;
+  }
+  .p-datatable .p-datatable-tbody > tr > td {
+    padding: 0.5rem;
+  }
+  .p-toolbar {
+    padding: 0.25rem;
+  }
+  .p-button {
+    padding: 0.5rem;
+  }
+  .p-inputtext {
+    padding: 0.5rem;
+  }
+}
+.tab-wrapper {
+  position: relative;
+
+  .add-button {
+    position: absolute;
+    top: 0rem;
+    right: 0;
+    z-index: 10;
+    padding: 0.2rem;
+  }
+}
+.floating-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}

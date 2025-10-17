@@ -1,0 +1,81 @@
+<form [formGroup]="tableForm" (ngSubmit)="onSubmit()">
+  <div class="tab-wrapper">
+    <div class="table-container">
+
+      <p-toolbar *ngIf="showToolbar">
+        <div class="p-toolbar-group-left">
+          <p-dropdown [options]="dropdownOptions" [group]="true" (onChange)="onValueChange($event)">
+            <ng-template let-group pTemplate="group">
+              <div class="flex align-items-center">
+                <i class="pi pi-{{group.value}} mr-2" style="color: green"></i>
+                <span>{{ group.label }}</span>
+              </div>
+            </ng-template>
+          </p-dropdown>
+          <button *ngIf="showOptions.export" pButton type="button" icon="pi pi-file-excel" label="Export" class="mr-1"
+            (click)="exportCSV('')"></button>
+          <p-button *ngIf="showOptions.clear" label="Clear" [outlined]="true" icon="pi pi-filter-slash"
+            (onClick)="clear(dt)" />
+          <div class="table-container">
+            <div class="global-search">
+              <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input #globalFilter pInputText type="text" placeholder="Global Search"
+                  (input)="dt.filterGlobal(globalFilter.value, 'contains')" />
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="p-toolbar-group-right">
+          <div class="p-toolbar-group-right">
+            <input *ngIf="showOptions.gsearch" pInputText type="text" (input)="onGlobalSearch($event)"
+              placeholder="Global Search" />
+          </div>
+        </div>
+      </p-toolbar>
+
+      <p-table #dt [value]="tableData" [paginator]="true" [rows]="50"
+        [rowsPerPageOptions]="[5, 10, 20, 50, 100, 200, 500]" [globalFilterFields]="globalFilterFields"
+        [scrollable]="true" [scrollHeight]="config.scrollheight" [resizableColumns]="true" [reorderableColumns]="true"
+        selectionMode="multiple" [(selection)]="selectedRows" [styleClass]="styleClass"
+        [tableStyle]="{ 'min-width': '50rem' }" [showCurrentPageReport]="true" [editMode]="'cell'"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" sortMode="multiple">
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 3rem"></th>
+            <th style="width: 3rem">
+              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field" pResizableColumn pReorderableColumn>
+              {{ col.header }}
+              <p-columnFilter type="text" field="name" display="menu" />
+              <p-sortIcon [field]="col.field" />
+            </th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-row let-rowIndex="rowIndex">
+          <tr [pReorderableRow]="rowIndex">
+            <td>
+              <span class="pi pi-bars" pReorderableRowHandle></span>
+            </td>
+            <td>
+              <p-tableCheckbox [value]="row"></p-tableCheckbox>
+            </td>
+            <td *ngFor="let col of columns">
+              {{ row[col.field] }}
+            </td>
+            <td>
+              <button pButton icon="pi pi-pencil" class="p-button-text p-button-sm" (click)="editUsers(row)"></button>
+              <button pButton icon="pi pi-trash" class="p-button-text p-button-sm" (click)="deleteUsers(row)"></button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+
+    </div>
+  </div>
+
+  <button pButton type="button" icon="pi pi-save" class="p-button-rounded p-button-primary floating-btn"
+    (click)="onSaveClick()"></button>
+</form>

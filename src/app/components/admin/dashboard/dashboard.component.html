@@ -1,0 +1,27 @@
+<div>
+  <!-- <app-short-chart-card></app-short-chart-card> -->
+</div>
+<div class="grid">
+  <div *ngFor="let card of cardOrder" class="col-12 sm:col-12 md:col-6 lg:col-6" style="height: 100%">
+    <div class="card m-0 w-full" [ngStyle]="{
+                height: '500px',
+                width: '100%'
+            }">
+      <p-tabView>
+        <p-tabPanel *ngFor="
+                        let heading of headings;
+                        let i = index
+                    " [header]="heading">
+          <ng-container [ngSwitch]="card">
+            <app-timeline></app-timeline>
+            <app-full-calendar></app-full-calendar>
+            <!-- <app-bar-chart></app-bar-chart> -->
+            <app-styled-list-table></app-styled-list-table>
+            <!-- <app-org-chart></app-org-chart> -->
+            <app-feature-table></app-feature-table>
+          </ng-container>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
+  </div>
+</div>

@@ -1,13 +1,11 @@
 import { Routes } from '@angular/router';
-import { AdminComponent } from './admin/admin.component';
-import { MainComponent } from './main/main.component';
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
-import { UserCrudComponent } from './user-crud/user-crud.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { MainComponent } from './components/web/main/main.component';
+import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/login/signup/signup.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'main', pathMatch: 'full' }, // Default route
-  { path: 'crud', component: UserCrudComponent },
   { path: 'main', component: MainComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'login', component: LoginComponent },

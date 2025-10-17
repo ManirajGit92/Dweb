@@ -4,16 +4,15 @@ import { RouterOutlet } from '@angular/router';
 // import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { JsonPipe } from '@angular/common';
-import { LoginComponent } from './login/login.component';
-import { HeaderComponent } from './header/header.component';
-import { AboutComponent } from './sections/about/about.component';
-import { ServicesComponent } from './sections/services/services.component';
-import { ContactComponent } from './sections/contact/contact.component';
-import { HomeComponent } from './sections/home/home.component';
-import { FooterComponent } from './footer/footer.component';
-import { ScheduleComponent } from './sections/schedule/schedule.component';
-import { FeedbackComponent } from './sections/feedback/feedback.component';
-import { UsersComponent } from './users/users.component';
+import { LoginComponent } from './components/login/login.component';
+import { HeaderComponent } from './components/shared/header/header.component';
+import { AboutComponent } from './components/web/about/about.component';
+import { ServicesComponent } from './components/web/services/services.component';
+import { ContactComponent } from './components/web/contact/contact.component';
+import { HomeComponent } from './components/web/home/home.component';
+import { FooterComponent } from './components/shared/footer/footer.component';
+import { ScheduleComponent } from './components/web/schedule/schedule.component';
+import { FeedbackComponent } from './components/web/feedback/feedback.component';
 
 @Component({
   selector: 'app-root',
@@ -31,21 +30,12 @@ import { UsersComponent } from './users/users.component';
     FooterComponent,
     ScheduleComponent,
     FeedbackComponent,
-    UsersComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'single-page-site';
-  data: any = 'Sample Message';
-  private baseUrl = 'http://127.0.0.1:8000'; // Python API URL
-  // constructor(private http: HttpClient) {}
-
-  ngOnInit() {
-    // this.createMessage();
-  }
-
+  ngOnInit() {}
   scrollTo(sectionId: string, event: Event) {
     event.preventDefault(); // prevent default anchor behavior
     const element = document.getElementById(sectionId);
@@ -53,17 +43,4 @@ export class AppComponent {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
-
-  // getMessage() {
-  //   this.http.get(`${this.baseUrl}`).subscribe((data) => {
-  //     this.data = data;
-  //   });
-  // }
-
-  // createMessage() {
-  //   let rep = { name: 'Item1', price: 100, is_offer: true };
-  //   this.http.post(`${this.baseUrl}/addItem`, rep).subscribe((data) => {
-  //     this.data = data;
-  //   });
-  // }
 }

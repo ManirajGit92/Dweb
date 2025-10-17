@@ -1,0 +1,39 @@
+<div class="overflow-auto" style="height: 450px">
+  <p-timeline [value]="eventData">
+    <ng-template pTemplate="marker" let-event>
+      <span class="custom-marker">
+      </span>
+    </ng-template>
+    <ng-template pTemplate="opposite" let-event>
+      <small class="text-surface-500 dark:text-surface-400 font-semibold">{{ event.date }}</small>
+    </ng-template>
+    <ng-template pTemplate="content" let-event>
+      <div>
+        <button pButton pRipple type="button" class="p-button-sm p-button-rounded flex items-center gap-2"
+          (click)="eventClick(event)">
+          <i class="pi pi-check"></i>
+          <span class="text-sm">{{ event.status }}</span>
+        </button>
+      </div>
+    </ng-template>
+  </p-timeline>
+</div>
+
+<app-dialog-box (dialogEmit)="dialogEmitted($event)">
+  <p [innerHTML]="moreInfo"></p>
+  <p-timeline [value]="subEventData">
+    <ng-template pTemplate="opposite" let-event>
+      <small class="text-surface-500 dark:text-surface-400 font-semibold" [innerHTML]="event.date"></small>
+    </ng-template>
+    <ng-template pTemplate="content" let-event>
+      <div>
+        <!-- <p class="font-semibold">{{ event.status }}</p> -->
+        <button pButton pRipple type="button"
+          class="p-button-sm p-button-rounded p-button-outlined p-button-secondary flex items-center gap-2">
+          <i class="pi pi-check text-green-500"></i>
+          <span class="text-sm">{{ event.status }}</span>
+        </button>
+      </div>
+    </ng-template>
+  </p-timeline>
+</app-dialog-box>

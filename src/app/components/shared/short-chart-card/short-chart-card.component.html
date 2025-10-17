@@ -1,0 +1,23 @@
+<!-- <div class="grid">
+  <div class="col-12 lg:col-4 xl:col-4" *ngFor="let cdata of chartData">
+    <div class="card p-1">
+      <h4>{{ cdata.title }}</h4>
+      <div class="grid">
+        <div class="col-12 sm:col-12 md:col-3 lg:col-3">
+          <div class="chart-container p-2">
+            <p-chart type="doughnut" [data]="cdata.chartData" [options]="chartOptions" [style.width]="'100px'"
+              [style.height]="'100px'"></p-chart>
+          </div>
+        </div>
+        <div class="col-12 sm:col-12 md:col-9 lg:col-9">
+          <span class="mt-2" *ngFor="let label of cdata.chartData.labels; let i = index">
+            <span class="legend-dot"
+              [ngStyle]="{backgroundColor:cdata.chartData.datasets[0].backgroundColor[i] }"></span>
+            {{ label +': '+ cdata.chartData.datasets[0].percentData[i]+'% '
+            }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->

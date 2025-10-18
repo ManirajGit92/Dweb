@@ -1,0 +1,17 @@
+// Center content flexibly
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Responsive font size
+@mixin responsive-font($min, $max) {
+  font-size: clamp($min, 2vw, $max);
+}
+
+// Shadow preset
+@mixin card-shadow {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}

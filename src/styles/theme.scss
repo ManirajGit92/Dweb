@@ -1,0 +1,22 @@
+// Primary Color Palette
+$color-primary: #1976d2;
+$color-secondary: #424242;
+$color-accent: #ff4081;
+$color-success: #4caf50;
+$color-danger: #f44336;
+
+// Typography
+$font-family: "Poppins", sans-serif;
+
+body {
+  font-family: $font-family;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.btn-primary {
+  background-color: $color-primary;
+  color: #fff;
+  border-radius: 6px;
+  padding: 8px 16px;
+}

@@ -1,0 +1,21 @@
+{
+  "APP": {
+    "TITLE": "Dynamic Web Application",
+    "DESCRIPTION": "A scalable Angular app"
+  },
+  "AUTH": {
+    "LOGIN": {
+      "TITLE": "Login to your account",
+      "USERNAME": "Username",
+      "PASSWORD": "Password",
+      "SUBMIT": "Sign In"
+    },
+    "REGISTER": {
+      "TITLE": "Create an Account"
+    }
+  },
+  "ERRORS": {
+    "NETWORK": "Network error occurred. Please try again.",
+    "UNAUTHORIZED": "You are not authorized."
+  }
+}

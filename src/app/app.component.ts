@@ -1,25 +1,21 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-// import { HttpClientModule } from '@angular/common/http';
-// import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { JsonPipe } from '@angular/common';
-import { LoginComponent } from './components/login/login.component';
-import { HeaderComponent } from './components/shared/header/header.component';
-import { AboutComponent } from './components/web/about/about.component';
-import { ServicesComponent } from './components/web/services/services.component';
-import { ContactComponent } from './components/web/contact/contact.component';
-import { HomeComponent } from './components/web/home/home.component';
-import { FooterComponent } from './components/shared/footer/footer.component';
-import { ScheduleComponent } from './components/web/schedule/schedule.component';
-import { FeedbackComponent } from './components/web/feedback/feedback.component';
+import { HeaderComponent } from './shared/components/header/header.component';
+import { AboutComponent } from './features/webpage/pages/about/about.component';
+import { ServicesComponent } from './features/webpage/pages/services/services.component';
+import { ContactComponent } from './features/webpage/pages/contact/contact.component';
+import { HomeComponent } from './features/webpage/pages/home/home.component';
+import { FooterComponent } from './shared/components/footer/footer.component';
+import { ScheduleComponent } from './features/webpage/pages/schedule/schedule.component';
+import { FeedbackComponent } from './features/webpage/pages/feedback/feedback.component';
+import { LoginComponent } from './features/auth/pages/login/login.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     RouterOutlet,
-    // HttpClientModule,
     JsonPipe,
     LoginComponent,
     HeaderComponent,

@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
-import { AdminComponent } from './components/admin/admin.component';
-import { MainComponent } from './components/web/main/main.component';
-import { LoginComponent } from './components/login/login.component';
-import { SignupComponent } from './components/login/signup/signup.component';
+import { MainComponent } from './features/webpage/pages/main/main.component';
+import { AdminComponent } from './features/admin/pages/admin-home/admin-home.component';
+import { LoginComponent } from './features/auth/pages/login/login.component';
+import { SignupComponent } from './features/auth/pages/signup/signup.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'main', pathMatch: 'full' }, // Default route

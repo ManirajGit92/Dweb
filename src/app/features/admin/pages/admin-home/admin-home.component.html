@@ -1,0 +1,54 @@
+<div class="container">
+  <!-- Sidebar -->
+  <div class="sidebar" [class.closed]="!isSidebarOpen">
+    <div class="sidebar-header">
+      <h2>Menu</h2>
+      <button (click)="toggleSidebar()" class="toggle-btn">
+        <span *ngIf="isSidebarOpen">⏴</span>
+        <span *ngIf="!isSidebarOpen">⏵</span>
+      </button>
+    </div>
+
+    <ul class="menu">
+      <li *ngFor="let item of menuItems; let i = index" (click)="selectMenu(i)" [class.active]="selectedMenu === i">
+        {{ item }}
+      </li>
+      <div class="highlight" [style.top.px]="highlightTop"></div>
+    </ul>
+
+    <div class="sidebar-footer">
+      <p>Created by <strong>Maniraj</strong></p>
+    </div>
+  </div>
+
+  <!-- Content Area -->
+  <div class="content">
+    <h1>{{ menuItems[selectedMenu] }}</h1>
+    <p>
+      This is the content for <strong>{{ menuItems[selectedMenu] }}</strong>.
+      You can replace this with your Angular routed component or dynamic content.
+    </p>
+    @switch(screen){
+    @case('Users') {
+    <app-users></app-users>
+    }
+    @case('Dashboard') {
+    <app-dashboard></app-dashboard>
+    }
+    @case('Products') {
+    <app-products></app-products>
+    }
+    @case('Pages') {
+    <app-page-settings></app-page-settings>
+    }
+
+    @default {
+
+    }
+    }
+  </div>
+  <!-- <div [@fadeInOut]>
+    <h1>{{ menuItems[selectedMenu] }}</h1>
+    <p>Content for {{ menuItems[selectedMenu] }}</p>
+  </div> -->
+</div>

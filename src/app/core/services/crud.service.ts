@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-// Define the data model (same as your FastAPI schema)
 export interface Users {
   id?: number;
   username: string;
@@ -18,7 +17,7 @@ export class CrudService {
   private apiUrl = 'http://127.0.0.1:8000/users'; // FastAPI base URL
 
   constructor(private http: HttpClient) {}
-
+  // Users CRUD Operations
   // CREATE
   addUsers(data: Users): Observable<any> {
     return this.http.post(this.apiUrl, data);
@@ -43,37 +42,29 @@ export class CrudService {
   deleteUsers(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
+
+  // Webpage CRUD Operations
+  addWebContent(data: Users): Observable<any> {
+    return this.http.post(this.apiUrl, data);
+  }
+
+  // READ ALL
+  getAllWebContent(): Observable<Users[]> {
+    return this.http.get<Users[]>(this.apiUrl);
+  }
+
+  // READ SINGLE
+  getWebContentById(id: number): Observable<Users> {
+    return this.http.get<Users>(`${this.apiUrl}/${id}`);
+  }
+
+  // UPDATE
+  updateWebContent(id: number, data: Users): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, data);
+  }
+
+  // DELETE
+  deleteWebContent(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
 }
-
-// export interface User {
-//   id?: number;
-//   name: string;
-//   email: string;
-//   phone?: string;
-//   password?: string; // only send on create/update
-// }
-
-// @Injectable({
-//   providedIn: 'root',
-// })
-// export class CrudService {
-//   private api = 'http://127.0.0.1:8000';
-
-//   constructor(private http: HttpClient) {}
-
-//   getAll(): Observable<User[]> {
-//     return this.http.get<User[]>(`${this.api}/users/`);
-//   }
-
-//   create(user: User) {
-//     return this.http.post<User>(`${this.api}/users/`, user);
-//   }
-
-//   update(id: number, user: Partial<User>) {
-//     return this.http.put<User>(`${this.api}/users/${id}`, user);
-//   }
-
-//   delete(id: number) {
-//     return this.http.delete(`${this.api}/users/${id}`);
-//   }
-// }

@@ -1,0 +1,116 @@
+<form [formGroup]="pageSetForm" (ngSubmit)="onSubmit()">
+  <p-accordion [multiple]="true">
+    <p-accordionTab header="Home" [selected]="true">
+      <!-- Home -->
+      <div style="max-width: 100vw; margin: 0.5rem auto;">
+        <div formArrayName="homeItems">
+          <div *ngFor="let item of homeItems.controls; let i = index" [formGroupName]="i" class="mb-5 ">
+            <div class="p-field mb-2">
+              <label for="homeImage-{{i}}">Image {{ i + 1 }}</label>
+              <input pInputText id="homeImage-{{i}}" formControlName="homeImage" placeholder="Enter Image URL"
+                class="p-inputtext-sm w-full mt-2" />
+            </div>
+            <div class="p-field ">
+              <label for="homeTitle-{{i}}" class="mb-2">Title {{ i + 1 }}</label>
+              <textarea pInputTextarea id="homeTitle-{{i}}" formControlName="homeTitle" placeholder="Enter Title"
+                class="w-full p-inputtextarea-sm mt-2" rows="3"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="col-12 lg:col-4 md:col-4 sm:col-12">
+            <button pButton type="button" label="Add More" icon="pi pi-plus"
+              class="p-button-sm p-button-success ml-2 w-full" (click)="addItem('home')"></button>
+          </div>
+          <div class="col-12 lg:col-4 md:col-4 sm:col-12">
+            <button pButton type="button" label="Remove Last" icon="pi pi-minus"
+              class="p-button-sm p-button-danger ml-2 w-full" (click)="removeItem('home')"
+              [disabled]="homeItems.length<=1"></button>
+          </div>
+          <div class="col-12 lg:col-4 md:col-4 sm:col-12">
+            <button pButton type="submit" label="Save" icon="pi pi-save"
+              class="p-button-sm p-button-primary ml-2 w-full"></button>
+          </div>
+        </div>
+      </div>
+    </p-accordionTab>
+    <p-accordionTab header="Aboutus" [selected]="false">
+      <!-- Aboutus -->
+      <div style="max-width: 100vw; margin: 0.5rem auto;">
+        <div formArrayName="aboutusItems">
+          <div *ngFor="let item of aboutusItems.controls; let i = index" [formGroupName]="i" class="mb-5 ">
+            <div class="p-field mb-2">
+              <label for="title-{{i}}">Title {{ i + 1 }}</label>
+              <input pInputText id="title-{{i}}" formControlName="aboutusTitle" placeholder="Enter Title"
+                class="p-inputtext-sm w-full mt-2" />
+            </div>
+            <div class="p-field ">
+              <label for="desc-{{i}}" class="mb-2">Detail {{ i + 1 }}</label>
+              <textarea pInputTextarea id="desc-{{i}}" formControlName="aboutusDetail" placeholder="Enter Detail"
+                class="w-full p-inputtextarea-sm mt-2" rows="3"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="col-12 lg:col-4 md:col-4 sm:col-12">
+            <button pButton type="button" label="Add More" icon="pi pi-plus"
+              class="p-button-sm p-button-success ml-2 w-full" (click)="addItem('aboutus')"></button>
+          </div>
+          <div class="col-12 lg:col-4 md:col-4 sm:col-12">
+            <button pButton type="button" label="Remove Last" icon="pi pi-minus"
+              class="p-button-sm p-button-danger ml-2 w-full" (click)="removeItem('aboutus')"
+              [disabled]="aboutusItems.length<=1"></button>
+          </div>
+          <div class="col-12 lg:col-4 md:col-4 sm:col-12">
+            <button pButton type="submit" label="Save" icon="pi pi-save"
+              class="p-button-sm p-button-primary ml-2 w-full"></button>
+          </div>
+        </div>
+      </div>
+    </p-accordionTab>
+    <p-accordionTab header="Products" [selected]="false">
+      <!-- Products -->
+      <div style="max-width: 100vw; margin: 0.5rem auto;">
+        <div formArrayName="productsItems">
+          <div *ngFor="let item of productsItems.controls; let i = index" [formGroupName]="i" class="mb-5 ">
+            <div class="p-field mb-2">
+              <label for="title-{{i}}">Title {{ i + 1 }}</label>
+              <input pInputText id="title-{{i}}" formControlName="productsTitle" placeholder="Enter Title"
+                class="p-inputtext-sm w-full mt-2" />
+            </div>
+            <div class="p-field ">
+              <label for="desc-{{i}}" class="mb-2">Detail {{ i + 1 }}</label>
+              <textarea pInputTextarea id="desc-{{i}}" formControlName="productsDetail" placeholder="Enter Detail"
+                class="w-full p-inputtextarea-sm mt-2" rows="3"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="col-12 lg:col-4 md:col-4 sm:col-12">
+            <button pButton type="button" label="Add More" icon="pi pi-plus"
+              class="p-button-sm p-button-success ml-2 w-full" (click)="addItem('products')"></button>
+          </div>
+          <div class="col-12 lg:col-4 md:col-4 sm:col-12">
+            <button pButton type="button" label="Remove Last" icon="pi pi-minus"
+              class="p-button-sm p-button-danger ml-2 w-full" (click)="removeItem('products')"
+              [disabled]="productsItems.length<=1"></button>
+          </div>
+          <div class="col-12 lg:col-4 md:col-4 sm:col-12">
+            <button pButton type="submit" label="Save" icon="pi pi-save"
+              class="p-button-sm p-button-primary ml-2 w-full"></button>
+          </div>
+        </div>
+      </div>
+    </p-accordionTab>
+    <p-accordionTab header="Contactus" [selected]="false">
+
+    </p-accordionTab>
+    <p-accordionTab header="Feedback" [selected]="false">
+
+    </p-accordionTab>
+    <p-accordionTab header="Schedule" [selected]="false">
+
+    </p-accordionTab>
+  </p-accordion>
+</form>

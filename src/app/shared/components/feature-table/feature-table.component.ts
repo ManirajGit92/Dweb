@@ -139,7 +139,6 @@ export class FeatureTableComponent {
   }
   onSaveClick() {}
   onValueChange(event: any) {
-    console.log(event);
     [
       { label: 'Export', value: 'export' },
       { label: 'GlobalSearch', value: 'globalsearch' },

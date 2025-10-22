@@ -26,7 +26,6 @@ export const ErrorInterceptor: HttpInterceptorFn = (req, next) => {
       } else if (error.status === 500) {
         errorMsg = 'Internal server error. Please try again later.';
       }
-
       console.error('[HTTP Error]:', error);
       alert(errorMsg); // Replace with a toast or snackbar in real app
       return throwError(() => error);

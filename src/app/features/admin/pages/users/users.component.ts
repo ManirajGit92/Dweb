@@ -170,7 +170,6 @@ export class UsersComponent {
 
   // Delete record
   deleteUsers(id: number) {
-    debugger;
     this.crudService.deleteUsers(id).subscribe(() => {
       this.loadUsers();
     });

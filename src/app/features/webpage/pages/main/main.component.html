@@ -1,8 +1,9 @@
 <app-header></app-header>
 <main>
-  <app-home id="home" [configData]="homeData"></app-home>
-  <app-about id="about" [configData]="aboutusData"></app-about>
-  <app-services id="services" [configData]="productsData"></app-services>
+  this.configData = data;
+  <app-home id="home" [configData]="configData[0].home"></app-home>
+  <app-about id="about" [configData]="configData[0].aboutus"></app-about>
+  <app-services id="services" [configData]="configData[0].products"></app-services>
   <app-schedule id="schedule" [configData]="scheduleData"></app-schedule>
   <app-feedback id="feedback" [configData]="feedbackData"></app-feedback>
   <app-contact id="contact" [configData]="contactData"></app-contact>

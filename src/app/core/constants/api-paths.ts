@@ -5,12 +5,17 @@ export const ApiPaths = {
     REFRESH_TOKEN: '/auth/refresh',
   },
   USER: {
-    GET_ALL: '/users',
+    GET_ALL: 'users',
     GET_BY_ID: (id: number) => `/users/${id}`,
     UPDATE: (id: number) => `/users/${id}`,
   },
   PRODUCTS: {
-    LIST: '/products',
+    LIST: 'products',
     DETAILS: (id: number) => `/products/${id}`,
+  },
+  WEBPAGE: {
+    GET_ALL: 'webpage',
+    GET_BY_ID: (id: number) => `/${id}`,
+    UPDATE: (id: number) => `/${id}`,
   },
 };

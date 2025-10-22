@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
+import { WebHomeConfig } from '../../../../shared/models/webpage.model';
 
 @Component({
   selector: 'app-home',
@@ -26,31 +27,7 @@ import { trigger, style, animate, transition } from '@angular/animations';
   ],
 })
 export class HomeComponent {
-  @Input() configData: any;
-  images = [
-    'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1920&q=80',
-    'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80',
-    'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1920&q=80',
-  ];
-
-  texts = [
-    {
-      title: 'Innovate with Confidence',
-      description:
-        'We build cutting-edge web and AI solutions that help your business grow.',
-    },
-    {
-      title: 'Design that Inspires',
-      description:
-        'Modern, responsive, and beautiful designs tailored for your brand.',
-    },
-    {
-      title: 'Scale Seamlessly',
-      description:
-        'Empowering your apps with performance, scalability, and great user experience.',
-    },
-  ];
-
+  @Input() configData: WebHomeConfig[] = [];
   currentImageIndex = 0;
   currentTextIndex = 0;
 
@@ -59,14 +36,18 @@ export class HomeComponent {
   }
 
   nextSlide() {
-    this.currentImageIndex = (this.currentImageIndex + 1) % this.images.length;
-    this.currentTextIndex = (this.currentTextIndex + 1) % this.texts.length;
+    this.currentImageIndex =
+      (this.currentImageIndex + 1) % this.configData.length;
+    this.currentTextIndex =
+      (this.currentTextIndex + 1) % this.configData.length;
   }
 
   prevSlide() {
     this.currentImageIndex =
-      (this.currentImageIndex - 1 + this.images.length) % this.images.length;
+      (this.currentImageIndex - 1 + this.configData.length) %
+      this.configData.length;
     this.currentTextIndex =
-      (this.currentTextIndex - 1 + this.texts.length) % this.texts.length;
+      (this.currentTextIndex - 1 + this.configData.length) %
+      this.configData.length;
   }
 }

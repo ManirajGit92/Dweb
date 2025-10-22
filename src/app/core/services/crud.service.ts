@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { WebHomeConfig } from '../../shared/models/webpage.model';
+import { environment } from '../../../environments/environment';
+import { ApiPaths } from '../constants/api-paths';
 
 export interface Users {
   id?: number;
@@ -14,57 +17,50 @@ export interface Users {
   providedIn: 'root',
 })
 export class CrudService {
-  private apiUrl = 'http://127.0.0.1:8000/users'; // FastAPI base URL
-
+  private apiBaseUrl = environment.apiBaseUrl; // FastAPI base URL
+  private apiPaths = ApiPaths;
+  private usersPath = this.apiBaseUrl + this.apiPaths.USER.GET_ALL;
+  private webPath = this.apiBaseUrl + this.apiPaths.WEBPAGE.GET_ALL;
   constructor(private http: HttpClient) {}
-  // Users CRUD Operations
-  // CREATE
+  // *******Users CRUD Operations***********
   addUsers(data: Users): Observable<any> {
-    return this.http.post(this.apiUrl, data);
+    return this.http.post(this.usersPath, data);
   }
 
-  // READ ALL
   getAllContent(): Observable<Users[]> {
-    return this.http.get<Users[]>(this.apiUrl);
+    return this.http.get<Users[]>(this.usersPath);
   }
 
-  // READ SINGLE
   getContentById(id: number): Observable<Users> {
-    return this.http.get<Users>(`${this.apiUrl}/${id}`);
+    return this.http.get<Users>(`${this.usersPath}/${id}`);
   }
 
-  // UPDATE
   updateUsers(id: number, data: Users): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, data);
+    return this.http.put(`${this.usersPath}/${id}`, data);
   }
 
-  // DELETE
   deleteUsers(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+    return this.http.delete(`${this.usersPath}/${id}`);
   }
 
-  // Webpage CRUD Operations
+  // ******Webpage CRUD Operations*******
   addWebContent(data: Users): Observable<any> {
-    return this.http.post(this.apiUrl, data);
+    return this.http.post(this.webPath, data);
   }
 
-  // READ ALL
-  getAllWebContent(): Observable<Users[]> {
-    return this.http.get<Users[]>(this.apiUrl);
+  getAllWebContent(): Observable<any[]> {
+    return this.http.get<any[]>(this.webPath);
   }
 
-  // READ SINGLE
-  getWebContentById(id: number): Observable<Users> {
-    return this.http.get<Users>(`${this.apiUrl}/${id}`);
+  getWebContentById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.webPath}/${id}`);
   }
 
-  // UPDATE
-  updateWebContent(id: number, data: Users): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, data);
+  updateWebContent(id: number, data: any): Observable<any> {
+    return this.http.put(`${this.webPath}/${id}`, data);
   }
 
-  // DELETE
   deleteWebContent(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+    return this.http.delete(`${this.webPath}/${id}`);
   }
 }

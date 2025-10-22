@@ -1,14 +1,14 @@
 <!-- <section> -->
 <div class="slider-container">
   <!-- IMAGE SLIDER -->
-  <div class="image-slider" [style.backgroundImage]="'url(' + images[currentImageIndex] + ')'">
+  <div class="image-slider" [style.backgroundImage]="'url(' + configData[currentImageIndex].image + ')'">
     <div class="overlay"></div>
   </div>
 
   <!-- TEXT SLIDER -->
   <div class="text-slider">
-    <h2 [@fadeAnimation]="currentTextIndex">{{ texts[currentTextIndex].title }}</h2>
-    <p [@fadeAnimation]="currentTextIndex">{{ texts[currentTextIndex].description }}</p>
+    <h2 [@fadeAnimation]="currentTextIndex">{{ configData[currentTextIndex].title }}</h2>
+    <p [@fadeAnimation]="currentTextIndex">{{ configData[currentTextIndex].detail }}</p>
 
     <button class="action-btn">Learn More</button>
   </div>

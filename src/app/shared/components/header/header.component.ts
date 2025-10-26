@@ -10,8 +10,18 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
   isShrunk = false;
+  isMenuOpen = false;
 
   constructor(private router: Router) {}
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.isShrunk = window.scrollY > 50;
+  }
 
   @HostListener('window:scroll')
   onScroll() {

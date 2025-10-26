@@ -1,18 +1,27 @@
 <header [class.shrink]="isShrunk">
-  <div class="logo">
-    <img src="https://cdn-icons-png.flaticon.com/512/5968/5968672.png" alt="Logo">
-    <span>MyWebsite</span>
+  <div class="header-container">
+    <div class="logo">
+      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968672.png" alt="Logo" />
+      <span>MyWebsite</span>
+    </div>
+    <!-- Hamburger Icon -->
+    <div class="menu-toggle" (click)="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <!-- Navigation -->
+    <nav [class.active]="isMenuOpen">
+      <ul>
+        <li><a (click)="scrollTo('home')">Home</a></li>
+        <li><a (click)="scrollTo('about')">About</a></li>
+        <li><a (click)="scrollTo('services')">Services</a></li>
+        <!-- <li><a (click)="scrollTo('schedule')">Schedule</a></li>
+        <li><a (click)="scrollTo('feedback')">Feedback</a></li> -->
+        <li><a (click)="scrollTo('contact')">Contact</a></li>
+        <li><a (click)="navigate('login')">Login</a></li>
+        <li><a (click)="navigate('admin')">Admin</a></li>
+      </ul>
+    </nav>
   </div>
-  <nav>
-    <ul>
-      <li><a (click)="scrollTo('home')">Home</a></li>
-      <li><a (click)="scrollTo('about')">About</a></li>
-      <li><a (click)="scrollTo('services')">Services</a></li>
-      <li><a (click)="scrollTo('schedule')">Schedule</a></li>
-      <li><a (click)="scrollTo('feedback')">Feedback</a></li>
-      <li><a (click)="scrollTo('contact')">Contact</a></li>
-      <li><a (click)="navigate('login')">Login</a></li>
-      <li><a (click)="navigate('admin')">Admin</a></li>
-    </ul>
-  </nav>
 </header>

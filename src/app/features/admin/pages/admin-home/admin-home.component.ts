@@ -43,6 +43,7 @@ import { PageSettingsComponent } from '../page-settings/page-settings.component'
 export class AdminComponent {
   isSidebarOpen = true;
   selectedMenu = 0;
+  highlightTop = 0;
   screen: string = 'dashboard';
   menuItems = [
     'Dashboard',
@@ -57,17 +58,15 @@ export class AdminComponent {
     'Back',
   ];
   constructor(private router: Router) {}
-  get highlightTop() {
-    return this.selectedMenu * 45; // Adjust height of each li
-  }
 
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
   }
 
   selectMenu(index: number) {
-    this.screen = this.menuItems[index];
     this.selectedMenu = index;
+    this.highlightTop = index * 48; // adjust based on your li height
+    this.screen = this.menuItems[index];
     if (this.menuItems[index]?.toLowerCase() === 'back') {
       this.router.navigate(['main']);
     }

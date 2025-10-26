@@ -34,7 +34,7 @@ import { WebHomeConfig } from '../../../../shared/models/webpage.model';
   styleUrl: './main.component.scss',
 })
 export class MainComponent {
-  title = 'single-page-site';
+  title = 'Dweb';
   data: any = 'Sample Message';
   homeData: any;
   aboutusData: any;

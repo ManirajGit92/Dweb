@@ -1,4 +1,10 @@
 <div class="container">
+  <!-- Mobile Header -->
+  <div class="mobile-header">
+    <button class="menu-toggle" (click)="toggleSidebar()">☰</button>
+    <h2>{{ menuItems[selectedMenu] }}</h2>
+  </div>
+
   <!-- Sidebar -->
   <div class="sidebar" [class.closed]="!isSidebarOpen">
     <div class="sidebar-header">
@@ -28,27 +34,12 @@
       This is the content for <strong>{{ menuItems[selectedMenu] }}</strong>.
       You can replace this with your Angular routed component or dynamic content.
     </p>
-    @switch(screen){
-    @case('Users') {
-    <app-users></app-users>
-    }
-    @case('Dashboard') {
-    <app-dashboard></app-dashboard>
-    }
-    @case('Products') {
-    <app-products></app-products>
-    }
-    @case('Pages') {
-    <app-page-settings></app-page-settings>
-    }
-
-    @default {
-
-    }
+    @switch(screen) {
+    @case('Users') { <app-users></app-users> }
+    @case('Dashboard') { <app-dashboard></app-dashboard> }
+    @case('Products') { <app-products></app-products> }
+    @case('Pages') { <app-page-settings></app-page-settings> }
+    @default { }
     }
   </div>
-  <!-- <div [@fadeInOut]>
-    <h1>{{ menuItems[selectedMenu] }}</h1>
-    <p>Content for {{ menuItems[selectedMenu] }}</p>
-  </div> -->
 </div>

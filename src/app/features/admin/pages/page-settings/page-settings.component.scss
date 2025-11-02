@@ -1,0 +1,111 @@
+// .card {
+//   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+//   transition: 0.3s;
+//   padding: 8px; /* for inner spacing */
+//   border-radius: 5px; /* for rounded corners */
+// }
+// .card:hover {
+//   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+// }
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  padding: 12px;
+  border-radius: 10px;
+  background-color: #fff;
+  transform: translateY(0);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  // below code give additional effect
+  // background: linear-gradient(
+  //   120deg,
+  //   rgba(0, 153, 255, 0.1),
+  //   rgba(0, 255, 204, 0.1),
+  //   rgba(0, 153, 255, 0.1)
+  // );
+  transition: all 0.5s ease;
+}
+
+.card:hover {
+  box-shadow: 0 10px 25px rgba(0, 153, 255, 0.25);
+  transform: translateY(-5px) scale(1.03);
+}
+
+.card:hover::before {
+  left: 100%;
+}
+
+.card:hover h3,
+.card:hover p {
+  color: #0078d7; /* Optional highlight color for text */
+}
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-6 {
+  flex: 1 1 48%;
+}
+
+.gap-3 {
+  gap: 1rem;
+}
+::ng-deep .p-accordion {
+  border: transparent;
+  background-color: transparent;
+
+  // .p-accordion-tab {
+  //   margin-bottom: 1rem;
+  //   border-radius: 6px;
+  //   overflow: hidden;
+  // }
+
+  .p-accordion-header {
+    background-color: transparent;
+    color: #fff;
+    font-weight: 600;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  .p-accordion-header-link {
+    padding: 0.5rem;
+    background: #2e394a;
+    border-color: #2e394a;
+    color: #fff;
+    // display: flex;
+    // align-items: center;
+    // justify-content: space-between;
+    // text-decoration: none;
+  }
+
+  //   .p-accordion-toggle-icon {
+  //     font-size: 1.2rem;
+  //     transition: transform 0.3s;
+  //   }
+
+  //   &.p-highlight .p-accordion-toggle-icon {
+  //     transform: rotate(90deg);
+  //   }
+  // }
+
+  .p-accordion-content {
+    background-color: #f9fafc;
+    padding: 0.5rem 0.5rem;
+    border-top: 1px solid #ccc;
+    color: #3d52a0;
+  }
+}

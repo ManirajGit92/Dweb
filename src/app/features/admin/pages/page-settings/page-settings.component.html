@@ -1,24 +1,93 @@
 <form [formGroup]="pageSetForm" (ngSubmit)="onSubmit()">
-  <p-accordion [multiple]="true">
-    <p-accordionTab header="Home" [selected]="true">
+  <p-accordion [multiple]="false">
+    <p-accordionTab header="Header" [selected]="true">
+      <!-- Header -->
+      <div style="max-width: 100vw; margin: 0.5rem auto;" class="surface-300">
+        <div class="card mb-4">
+          <div class="p-field mb-2">
+            <label for="logoImage" class="font-bold text-teal-600">Website Logo</label>
+            <input pInputText id="logoImage" formControlName="logo" placeholder="Enter Image URL"
+              class="p-inputtext-sm w-full mt-2" />
+          </div>
+          <div class="p-field ">
+            <label for="logoTitle" class="mb-2 font-bold text-blue-600">Website Name</label>
+            <input pInputText id="logoTitle" formControlName="sitename" placeholder="Enter title"
+              class="p-inputtext-sm w-full mt-2" />
+          </div>
+        </div>
+        <div formArrayName="header">
+          <div *ngFor="let item of header.controls; let i = index" [formGroupName]="i" class="mb-3">
+            <div class="card p-3">
+              <div class="p-field grid align-items-center gap-3">
+                <!-- Textbox -->
+                <div class="col-6">
+                  <label for="menuLabel-{{ i }}" class="font-bold text-teal-600 block mb-2">
+                    Menu Label {{ i + 1 }}
+                  </label>
+                  <input pInputText id="menuLabel-{{ i }}" formControlName="title" placeholder="Enter Menu Label"
+                    class="p-inputtext-sm w-full" />
+                </div>
+
+                <!-- Dropdown -->
+                <div class="col-6">
+                  <label for="title-{{ i }}" class="font-bold text-blue-600 block mb-2">
+                    type {{ i + 1 }}
+                  </label>
+                  <p-dropdown id="type-{{ i }}" formControlName="type" [options]="headerMenuOtions" optionLabel="label"
+                    placeholder="Select an Option" class="w-full" appendTo="body"></p-dropdown>
+                </div>
+              </div>
+
+              <!-- Menu Link (Full width) -->
+              <div class="p-field mt-3">
+                <label for="menuLink-{{ i }}" class="font-bold text-blue-600 block mb-2">
+                  Menu Link {{ i + 1 }}
+                </label>
+                <input pInputText id="menuLink-{{ i }}" formControlName="detail" placeholder="Enter Menu Link"
+                  class="p-inputtext-sm w-full" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="col-12 lg:col-4 md:col-4 sm:col-12">
+            <button pButton type="button" label="Add More" icon="pi pi-plus"
+              class="p-button-sm p-button-success ml-2 w-full" (click)="addItem('home')"></button>
+          </div>
+          <div class="col-12 lg:col-4 md:col-4 sm:col-12">
+            <button pButton type="button" label="Remove Last" icon="pi pi-minus"
+              class="p-button-sm p-button-danger ml-2 w-full" (click)="removeItem('home')"
+              [disabled]="home.length<=1"></button>
+          </div>
+          <div class="col-12 lg:col-4 md:col-4 sm:col-12">
+            <button pButton type="submit" label="Save" icon="pi pi-save"
+              class="p-button-sm p-button-primary ml-2 w-full"></button>
+          </div>
+        </div>
+      </div>
+    </p-accordionTab>
+    <p-accordionTab header="Home">
       <!-- Home -->
       <div style="max-width: 100vw; margin: 0.5rem auto;" class="surface-300">
         <div formArrayName="home">
-          <div *ngFor="let item of home.controls; let i = index" [formGroupName]="i" class="mb-5 ">
-            <div class="p-field mb-2">
-              <label for="homeImage-{{i}}" class="font-bold text-teal-600">Image {{ i + 1 }}</label>
-              <input pInputText id="homeImage-{{i}}" formControlName="image" placeholder="Enter Image URL"
-                class="p-inputtext-sm w-full mt-2" />
-            </div>
-            <div class="p-field ">
-              <label for="homeTitle-{{i}}" class="mb-2 font-bold text-blue-600">Title {{ i + 1 }}</label>
-              <input pInputText id="hometitle-{{i}}" formControlName="title" placeholder="Enter title"
-                class="p-inputtext-sm w-full mt-2" />
-            </div>
-            <div class="p-field ">
-              <label for="homeTitle-{{i}}" class="mb-2 font-bold text-blue-600">Detail {{ i + 1 }}</label>
-              <textarea pInputTextarea id="homeTitle-{{i}}" formControlName="detail" placeholder="Enter Detail"
-                class="w-full p-inputtextarea-sm mt-2" rows="3"></textarea>
+          <div *ngFor="let item of home.controls; let i = index" [formGroupName]="i" class="mb-3 ">
+            <div class="card">
+              <div class="p-field mb-2">
+                <label for="homeImage-{{i}}" class="font-bold text-teal-600">Image {{ i + 1 }}</label>
+                <input pInputText id="homeImage-{{i}}" formControlName="image" placeholder="Enter Image URL"
+                  class="p-inputtext-sm w-full mt-2" />
+              </div>
+              <div class="p-field ">
+                <label for="homeTitle-{{i}}" class="mb-2 font-bold text-blue-600">Title {{ i + 1 }}</label>
+                <input pInputText id="hometitle-{{i}}" formControlName="title" placeholder="Enter title"
+                  class="p-inputtext-sm w-full mt-2" />
+              </div>
+              <div class="p-field ">
+                <label for="homeTitle-{{i}}" class="mb-2 font-bold text-blue-600">Detail {{ i + 1 }}</label>
+                <textarea pInputTextarea id="homeTitle-{{i}}" formControlName="detail" placeholder="Enter Detail"
+                  class="w-full p-inputtextarea-sm mt-2" rows="3"></textarea>
+              </div>
             </div>
           </div>
         </div>
@@ -44,16 +113,18 @@
       <!-- Aboutus -->
       <div style="max-width: 100vw; margin: 0.5rem auto;">
         <div formArrayName="aboutus">
-          <div *ngFor="let item of aboutus.controls; let i = index" [formGroupName]="i" class="mb-5 ">
-            <div class="p-field mb-2">
-              <label for="title-{{i}}" class="font-bold text-blue-600">Title {{ i + 1 }}</label>
-              <input pInputText id="title-{{i}}" formControlName="title" placeholder="Enter Title"
-                class="p-inputtext-sm w-full mt-2" />
-            </div>
-            <div class="p-field ">
-              <label for="desc-{{i}}" class="mb-2 font-bold text-blue-600">Detail {{ i + 1 }}</label>
-              <textarea pInputTextarea id="desc-{{i}}" formControlName="detail" placeholder="Enter Detail"
-                class="w-full p-inputtextarea-sm mt-2" rows="3"></textarea>
+          <div *ngFor="let item of aboutus.controls; let i = index" [formGroupName]="i" class="mb-3 ">
+            <div class="card">
+              <div class="p-field mb-2">
+                <label for="title-{{i}}" class="font-bold text-blue-600">Title {{ i + 1 }}</label>
+                <input pInputText id="title-{{i}}" formControlName="title" placeholder="Enter Title"
+                  class="p-inputtext-sm w-full mt-2" />
+              </div>
+              <div class="p-field ">
+                <label for="desc-{{i}}" class="mb-2 font-bold text-blue-600">Detail {{ i + 1 }}</label>
+                <textarea pInputTextarea id="desc-{{i}}" formControlName="detail" placeholder="Enter Detail"
+                  class="w-full p-inputtextarea-sm mt-2" rows="3"></textarea>
+              </div>
             </div>
           </div>
         </div>
@@ -78,16 +149,18 @@
       <!-- Products -->
       <div style="max-width: 100vw; margin: 0.5rem auto;">
         <div formArrayName="products">
-          <div *ngFor="let item of products.controls; let i = index" [formGroupName]="i" class="mb-5 ">
-            <div class="p-field mb-2">
-              <label for="title-{{i}}" class="font-bold text-blue-600">Title {{ i + 1 }}</label>
-              <input pInputText id="title-{{i}}" formControlName="title" placeholder="Enter Title"
-                class="p-inputtext-sm w-full mt-2" />
-            </div>
-            <div class="p-field ">
-              <label for="desc-{{i}}" class="mb-2 font-bold text-blue-600">Detail {{ i + 1 }}</label>
-              <textarea pInputTextarea id="desc-{{i}}" formControlName="detail" placeholder="Enter Detail"
-                class="w-full p-inputtextarea-sm mt-2" rows="3"></textarea>
+          <div *ngFor="let item of products.controls; let i = index" [formGroupName]="i" class="mb-3 ">
+            <div class="card">
+              <div class="p-field mb-2">
+                <label for="title-{{i}}" class="font-bold text-blue-600">Title {{ i + 1 }}</label>
+                <input pInputText id="title-{{i}}" formControlName="title" placeholder="Enter Title"
+                  class="p-inputtext-sm w-full mt-2" />
+              </div>
+              <div class="p-field ">
+                <label for="desc-{{i}}" class="mb-2 font-bold text-blue-600">Detail {{ i + 1 }}</label>
+                <textarea pInputTextarea id="desc-{{i}}" formControlName="detail" placeholder="Enter Detail"
+                  class="w-full p-inputtextarea-sm mt-2" rows="3"></textarea>
+              </div>
             </div>
           </div>
         </div>
@@ -109,13 +182,149 @@
       </div>
     </p-accordionTab>
     <p-accordionTab header="Contactus" [selected]="false">
-
+      <!-- Contact US -->
+      <div style="max-width: 100vw; margin: 0.5rem auto;">
+        <div formArrayName="contactus">
+          <div *ngFor="let item of contactus.controls; let i = index" [formGroupName]="i" class="mb-3 ">
+            <div class="card">
+              <div class="p-field mb-2 w-full">
+                <label for="title-{{ i }}" class="font-bold text-blue-600">Title {{ i + 1 }}</label>
+                <p-dropdown id="title-{{ i }}" formControlName="title" [options]="contactusOptions" optionLabel="label"
+                  placeholder="Select an Option" class="w-full mt-2" [style]="{ width: '100%' }"
+                  [panelStyle]="{ width: '100%' }"></p-dropdown>
+              </div>
+              <div class="p-field ">
+                <label for="desc-{{i}}" class="mb-2 font-bold text-blue-600">Detail {{ i + 1 }}</label>
+                <textarea pInputTextarea id="desc-{{i}}" formControlName="detail" placeholder="Enter Detail"
+                  class="w-full p-inputtextarea-sm mt-2" rows="3"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="col-12 lg:col-4 md:col-4 sm:col-12">
+            <button pButton type="button" label="Add More" icon="pi pi-plus"
+              class="p-button-sm p-button-success ml-2 w-full" (click)="addItem('products')"></button>
+          </div>
+          <div class="col-12 lg:col-4 md:col-4 sm:col-12">
+            <button pButton type="button" label="Remove Last" icon="pi pi-minus"
+              class="p-button-sm p-button-danger ml-2 w-full" (click)="removeItem('products')"
+              [disabled]="products.length<=1"></button>
+          </div>
+          <div class="col-12 lg:col-4 md:col-4 sm:col-12">
+            <button pButton type="submit" label="Save" icon="pi pi-save"
+              class="p-button-sm p-button-primary ml-2 w-full"></button>
+          </div>
+        </div>
+      </div>
+    </p-accordionTab>
+    <p-accordionTab header="Footer" [selected]="false">
+      <!-- Footer -->
+      <div style="max-width: 100vw; margin: 0.5rem auto;">
+        <div formArrayName="footer">
+          <div *ngFor="let item of footer.controls; let i = index" [formGroupName]="i" class="mb-3 ">
+            <div class="card">
+              <div class="p-field mb-2">
+                <label for="title-{{i}}" class="font-bold text-blue-600">Title {{ i + 1 }}</label>
+                <input pInputText id="title-{{i}}" formControlName="title" placeholder="Enter Title"
+                  class="p-inputtext-sm w-full mt-2" />
+              </div>
+              <div class="p-field ">
+                <label for="desc-{{i}}" class="mb-2 font-bold text-blue-600">Detail {{ i + 1 }}</label>
+                <textarea pInputTextarea id="desc-{{i}}" formControlName="detail" placeholder="Enter Detail"
+                  class="w-full p-inputtextarea-sm mt-2" rows="3"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="col-12 lg:col-4 md:col-4 sm:col-12">
+            <button pButton type="button" label="Add More" icon="pi pi-plus"
+              class="p-button-sm p-button-success ml-2 w-full" (click)="addItem('products')"></button>
+          </div>
+          <div class="col-12 lg:col-4 md:col-4 sm:col-12">
+            <button pButton type="button" label="Remove Last" icon="pi pi-minus"
+              class="p-button-sm p-button-danger ml-2 w-full" (click)="removeItem('products')"
+              [disabled]="products.length<=1"></button>
+          </div>
+          <div class="col-12 lg:col-4 md:col-4 sm:col-12">
+            <button pButton type="submit" label="Save" icon="pi pi-save"
+              class="p-button-sm p-button-primary ml-2 w-full"></button>
+          </div>
+        </div>
+      </div>
     </p-accordionTab>
     <p-accordionTab header="Feedback" [selected]="false">
-
+      <!-- Feedback -->
+      <div style="max-width: 100vw; margin: 0.5rem auto;">
+        <div formArrayName="products">
+          <div *ngFor="let item of products.controls; let i = index" [formGroupName]="i" class="mb-3 ">
+            <div class="card">
+              <div class="p-field mb-2">
+                <label for="title-{{i}}" class="font-bold text-blue-600">Title {{ i + 1 }}</label>
+                <input pInputText id="title-{{i}}" formControlName="title" placeholder="Enter Title"
+                  class="p-inputtext-sm w-full mt-2" />
+              </div>
+              <div class="p-field ">
+                <label for="desc-{{i}}" class="mb-2 font-bold text-blue-600">Detail {{ i + 1 }}</label>
+                <textarea pInputTextarea id="desc-{{i}}" formControlName="detail" placeholder="Enter Detail"
+                  class="w-full p-inputtextarea-sm mt-2" rows="3"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="col-12 lg:col-4 md:col-4 sm:col-12">
+            <button pButton type="button" label="Add More" icon="pi pi-plus"
+              class="p-button-sm p-button-success ml-2 w-full" (click)="addItem('products')"></button>
+          </div>
+          <div class="col-12 lg:col-4 md:col-4 sm:col-12">
+            <button pButton type="button" label="Remove Last" icon="pi pi-minus"
+              class="p-button-sm p-button-danger ml-2 w-full" (click)="removeItem('products')"
+              [disabled]="products.length<=1"></button>
+          </div>
+          <div class="col-12 lg:col-4 md:col-4 sm:col-12">
+            <button pButton type="submit" label="Save" icon="pi pi-save"
+              class="p-button-sm p-button-primary ml-2 w-full"></button>
+          </div>
+        </div>
+      </div>
     </p-accordionTab>
     <p-accordionTab header="Schedule" [selected]="false">
-
+      <!-- Schedule -->
+      <div style="max-width: 100vw; margin: 0.5rem auto;">
+        <div formArrayName="products">
+          <div *ngFor="let item of products.controls; let i = index" [formGroupName]="i" class="mb-3 ">
+            <div class="card">
+              <div class="p-field mb-2">
+                <label for="title-{{i}}" class="font-bold text-blue-600">Title {{ i + 1 }}</label>
+                <input pInputText id="title-{{i}}" formControlName="title" placeholder="Enter Title"
+                  class="p-inputtext-sm w-full mt-2" />
+              </div>
+              <div class="p-field ">
+                <label for="desc-{{i}}" class="mb-2 font-bold text-blue-600">Detail {{ i + 1 }}</label>
+                <textarea pInputTextarea id="desc-{{i}}" formControlName="detail" placeholder="Enter Detail"
+                  class="w-full p-inputtextarea-sm mt-2" rows="3"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="col-12 lg:col-4 md:col-4 sm:col-12">
+            <button pButton type="button" label="Add More" icon="pi pi-plus"
+              class="p-button-sm p-button-success ml-2 w-full" (click)="addItem('products')"></button>
+          </div>
+          <div class="col-12 lg:col-4 md:col-4 sm:col-12">
+            <button pButton type="button" label="Remove Last" icon="pi pi-minus"
+              class="p-button-sm p-button-danger ml-2 w-full" (click)="removeItem('products')"
+              [disabled]="products.length<=1"></button>
+          </div>
+          <div class="col-12 lg:col-4 md:col-4 sm:col-12">
+            <button pButton type="submit" label="Save" icon="pi pi-save"
+              class="p-button-sm p-button-primary ml-2 w-full"></button>
+          </div>
+        </div>
+      </div>
     </p-accordionTab>
   </p-accordion>
 </form>

@@ -1,25 +1,17 @@
 <footer class="footer-container">
   <div class="footer-content">
-    <!-- Left: Creator & Contact -->
-    <div class="footer-left">
-      <h3>Website by {{ creatorName }}</h3>
-      <p>Email: <a href="mailto:{{contactEmail}}">{{ contactEmail }}</a></p>
-      <p>Phone: <a href="tel:{{contactPhone}}">{{ contactPhone }}</a></p>
+    <div *ngFor="let section of footerSections" class="footer-section" [ngClass]="section.position">
+      <div *ngIf="section.links?.length">
+        <h4>{{ section.title }}</h4>
+        <ul>
+          <li *ngFor="let link of section.links">
+            <a [href]="link.url">{{ link.name }}</a>
+          </li>
+        </ul>
+      </div>
     </div>
-
-    <!-- Center: Important Links -->
-    <div class="footer-center">
-      <h4>Important Links</h4>
-      <ul>
-        <li *ngFor="let link of importantLinks">
-          <a [href]="link.url">{{ link.name }}</a>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Right: Copyright -->
-    <div class="footer-right">
-      <p>&copy; {{ '2025' }} {{ creatorName }}. All rights reserved.</p>
-    </div>
+  </div>
+  <div class="flex justify-content-center flex-wrap">
+    <p>&copy; {{ '2025' }} {{ creatorName }}. All rights reserved. Website by {{ creatorName }}</p>
   </div>
 </footer>

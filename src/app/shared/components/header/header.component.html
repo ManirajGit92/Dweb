@@ -1,8 +1,8 @@
 <header [class.shrink]="isShrunk">
   <div class="header-container">
     <div class="logo">
-      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968672.png" alt="Logo" />
-      <span>MyWebsite</span>
+      <img [src]="configData.settings.logo" alt="Logo" />
+      <span [innerHTML]="configData.settings.sitename"></span>
     </div>
     <!-- Hamburger Icon -->
     <div class="menu-toggle" (click)="toggleMenu()">
@@ -13,14 +13,14 @@
     <!-- Navigation -->
     <nav [class.active]="isMenuOpen">
       <ul>
-        <li><a (click)="scrollTo('home')">Home</a></li>
-        <li><a (click)="scrollTo('about')">About</a></li>
-        <li><a (click)="scrollTo('services')">Services</a></li>
-        <!-- <li><a (click)="scrollTo('schedule')">Schedule</a></li>
-        <li><a (click)="scrollTo('feedback')">Feedback</a></li> -->
-        <li><a (click)="scrollTo('contact')">Contact</a></li>
-        <li><a (click)="navigate('login')">Login</a></li>
-        <li><a (click)="navigate('admin')">Admin</a></li>
+        <li *ngFor="let menu of menus">
+          <a *ngIf="menu.type === 'scroll'" (click)="scrollTo(menu.target)">
+            {{ menu.label }}
+          </a>
+          <a *ngIf="menu.type === 'navigate'" (click)="navigate(menu.target)">
+            {{ menu.label }}
+          </a>
+        </li>
       </ul>
     </nav>
   </div>

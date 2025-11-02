@@ -12,15 +12,9 @@
     <button class="nav-btn prev" (click)="prevSlide()">&#10094;</button>
 
     <div class="cards-container" [@slideAnimation]="animationState" (@slideAnimation.done)="resetAnimation()">
-      <div class="card" *ngFor="let card of visibleCards">
-        <!-- <p-card header="Simple Card">
-          <p class="m-0">
-            Lorem ipsum dolor sit amet...
-          </p>
-        </p-card> -->
-
+      <div class="card" *ngFor="let card of configData">
         <h3>{{ card.title }}</h3>
-        <p>{{ card.description }}</p>
+        <p>{{ card.detail }}</p>
       </div>
     </div>
 

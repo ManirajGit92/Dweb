@@ -1,66 +1,78 @@
 <p-accordion>
   <p-accordionTab header="Add/Update" [selected]="true">
     <form [formGroup]="usersForm" (ngSubmit)="onSubmit()">
+      <div class="card">
+        <div class="grid">
+          <div class="col-12 lg:col-4 md:col-6 sm:col-12">
+            <div class="flex flex-column gap-2">
+              <label for="username">Username</label>
+              <input pInputText id="username" aria-describedby="username-help" [formControlName]="'userName'" />
+              <small *ngIf="!isFormValid" id="username-help">
+                Please Enter Username.
+              </small>
+            </div>
+          </div>
+          <div class="col-12 lg:col-4 md:col-6 sm:col-12">
+            <div class="flex flex-column gap-2">
+              <label for="emailAddress">EmailAddress</label>
+              <input pInputText id="emailAddress" aria-describedby="emailAddress-help"
+                [formControlName]="'emailAddress'" />
+              <small *ngIf="!isFormValid" id="username-help">
+                Please Enter EmailAddress.
+              </small>
+            </div>
+          </div>
+          <div class="col-12 lg:col-4 md:col-6 sm:col-12">
+            <div class="flex flex-column gap-2">
+              <label for="phoneNumber">PhoneNumber</label>
+              <input pInputText id="phoneNumber" aria-describedby="phoneNumber-help"
+                [formControlName]="'phoneNumber'" />
+              <small *ngIf="!isFormValid" id="username-help">
+                Please Enter PhoneNumber.
+              </small>
+            </div>
+          </div>
+          <div class="col-12 lg:col-4 md:col-6 sm:col-12">
+            <div class="flex flex-column gap-2">
+              <label for="emailOTP">EmailOTP</label>
+              <input pInputText id="emailOTP" aria-describedby="emailOTP-help" [formControlName]="'emailOTP'" />
+              <small *ngIf="!isFormValid" id="username-help">
+                Please Enter emailOTP.
+              </small>
+            </div>
+          </div>
+          <div class="col-12 lg:col-4 md:col-6 sm:col-12">
+            <div class="flex flex-column gap-2">
+              <label for="mobileOTP">MobileOTP</label>
+              <input pInputText id="mobileOTP" aria-describedby="mobileOTP-help" [formControlName]="'mobileOTP'" />
+              <small *ngIf="!isFormValid" id="username-help">
+                Please Enter mobileOTP.
+              </small>
+            </div>
+          </div>
+          <div class="col-12 lg:col-4 md:col-6 sm:col-12">
+            <div class="flex flex-column gap-2">
+              <label for="password">Password</label>
+              <input pInputText id="password" aria-describedby="password-help" [formControlName]="'password'" />
+              <small *ngIf="!isFormValid" id="username-help">
+                Please Enter your password.
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="grid">
-        <div class="col-12 lg:col-4 md:col-6 sm:col-12">
-          <div class="flex flex-column gap-2">
-            <label for="username">Username</label>
-            <input pInputText id="username" aria-describedby="username-help" [formControlName]="'userName'" />
-            <small *ngIf="!isFormValid" id="username-help">
-              Please Enter Username.
-            </small>
-          </div>
+        <div class="col-12 lg:col-4 md:col-4 sm:col-12">
+          <button pButton type="button" label="Add More" icon="pi pi-plus"
+            class="p-button-sm p-button-success ml-2 w-full" (click)="addUsers()"> </button>
         </div>
-        <div class="col-12 lg:col-4 md:col-6 sm:col-12">
-          <div class="flex flex-column gap-2">
-            <label for="emailAddress">EmailAddress</label>
-            <input pInputText id="emailAddress" aria-describedby="emailAddress-help"
-              [formControlName]="'emailAddress'" />
-            <small *ngIf="!isFormValid" id="username-help">
-              Please Enter EmailAddress.
-            </small>
-          </div>
+        <div class="col-12 lg:col-4 md:col-4 sm:col-12">
+          <button pButton type="button" label="Update" icon="pi pi-history"
+            class="p-button-sm p-button-secondary ml-2 w-full" (click)="updateUsers()"></button>
         </div>
-        <div class="col-12 lg:col-4 md:col-6 sm:col-12">
-          <div class="flex flex-column gap-2">
-            <label for="phoneNumber">PhoneNumber</label>
-            <input pInputText id="phoneNumber" aria-describedby="phoneNumber-help" [formControlName]="'phoneNumber'" />
-            <small *ngIf="!isFormValid" id="username-help">
-              Please Enter PhoneNumber.
-            </small>
-          </div>
-        </div>
-        <div class="col-12 lg:col-4 md:col-6 sm:col-12">
-          <div class="flex flex-column gap-2">
-            <label for="emailOTP">EmailOTP</label>
-            <input pInputText id="emailOTP" aria-describedby="emailOTP-help" [formControlName]="'emailOTP'" />
-            <small *ngIf="!isFormValid" id="username-help">
-              Please Enter emailOTP.
-            </small>
-          </div>
-        </div>
-        <div class="col-12 lg:col-4 md:col-6 sm:col-12">
-          <div class="flex flex-column gap-2">
-            <label for="mobileOTP">MobileOTP</label>
-            <input pInputText id="mobileOTP" aria-describedby="mobileOTP-help" [formControlName]="'mobileOTP'" />
-            <small *ngIf="!isFormValid" id="username-help">
-              Please Enter mobileOTP.
-            </small>
-          </div>
-        </div>
-        <div class="col-12 lg:col-4 md:col-6 sm:col-12">
-          <div class="flex flex-column gap-2">
-            <label for="password">Password</label>
-            <input pInputText id="password" aria-describedby="password-help" [formControlName]="'password'" />
-            <small *ngIf="!isFormValid" id="username-help">
-              Please Enter your password.
-            </small>
-          </div>
-        </div>
-        <div class="col-12 lg:col-4 md:col-6 sm:col-12">
-          <p-button label="Add" icon="pi pi-check" iconPos="right" [type]="'button'" (click)="addUsers()" />
-          <p-button label="Update" icon="pi pi-check" iconPos="right" [type]="'button'" (click)="updateUsers()" />
-          <p-button label="Cancel" icon="pi pi-check" iconPos="right" [type]="'button'" (click)="cancelEdit()" />
+        <div class="col-12 lg:col-4 md:col-4 sm:col-12">
+          <button pButton type="submit" label="Cancel" icon="pi pi-times"
+            class="p-button-sm p-button-primary ml-2 w-full" (click)="cancelEdit()"></button>
         </div>
       </div>
     </form>

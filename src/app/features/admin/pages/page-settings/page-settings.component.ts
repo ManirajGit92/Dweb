@@ -13,6 +13,7 @@ import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CrudService } from '../../../../core/services/crud.service';
+import { DropdownModule } from 'primeng/dropdown';
 
 @Component({
   selector: 'app-page-settings',
@@ -25,27 +26,23 @@ import { CrudService } from '../../../../core/services/crud.service';
     ButtonModule,
     CardModule,
     CommonModule,
+    DropdownModule,
   ],
   templateUrl: './page-settings.component.html',
   styleUrl: './page-settings.component.scss',
 })
 export class PageSettingsComponent {
   pageSetForm: FormGroup = this.pageSetFormGroup();
-  pagesDetails: any = {
-    homePage: [
-      { bgImage: '', text: '' },
-      { bgImage: '', text: '' },
-    ],
-    aboutusPage: [
-      { title: '', detail: '' },
-      { title: '', detail: '' },
-    ],
-    productsPage: [
-      { title: '', detail: '' },
-      { title: '', detail: '' },
-    ],
-  };
-
+  contactusOptions: any[] = [
+    { label: 'Address', value: 'address' },
+    { label: 'Map', value: 'Map' },
+    { label: 'Email', value: 'Email' },
+    { label: 'Chart', value: 'Chart' },
+  ];
+  headerMenuOtions: any[] = [
+    { label: 'Scroll', value: 'scroll' },
+    { label: 'Navigate', value: 'navigate' },
+  ];
   constructor(private fb: FormBuilder, private crudService: CrudService) {}
   ngOnInit() {
     this.getWebPageDataById();
@@ -53,6 +50,31 @@ export class PageSettingsComponent {
 
   getWebPageDataById() {
     this.crudService.getWebContentById(1).subscribe((data: any) => {
+      data.header?.forEach((item: any) => {
+        this.header.push(
+          this.fb.group({
+            title: [item.title, Validators.required],
+            detail: [item.detail, Validators.required],
+            type: [item.type, Validators.required],
+          })
+        );
+      });
+      data.footer?.forEach((item: any) => {
+        this.footer.push(
+          this.fb.group({
+            title: [item.title, Validators.required],
+            detail: [item.detail, Validators.required],
+          })
+        );
+      });
+      data.contactus?.forEach((item: any) => {
+        this.contactus.push(
+          this.fb.group({
+            title: [item.title, Validators.required],
+            detail: [item.detail, Validators.required],
+          })
+        );
+      });
       data.home.forEach((item: any) => {
         this.home.push(
           this.fb.group({
@@ -83,13 +105,23 @@ export class PageSettingsComponent {
 
   pageSetFormGroup() {
     return this.fb.group({
+      logo: ['', Validators.required],
+      sitename: ['', Validators.required],
+      header: this.fb.array([]),
+      footer: this.fb.array([]),
+      contactus: this.fb.array([]),
       home: this.fb.array([]),
       aboutus: this.fb.array([]),
       products: this.fb.array([]),
     });
   }
   createItem(action: string): FormGroup {
-    if (action == 'home') {
+    if (action == 'header') {
+      return this.fb.group({
+        title: ['', Validators.required],
+        detail: ['', Validators.required],
+      });
+    } else if (action == 'home') {
       return this.fb.group({
         image: ['', Validators.required],
         title: ['', Validators.required],
@@ -101,6 +133,16 @@ export class PageSettingsComponent {
         detail: ['', Validators.required],
       });
     } else if (action == 'products') {
+      return this.fb.group({
+        title: ['', Validators.required],
+        detail: ['', Validators.required],
+      });
+    } else if (action == 'contactus') {
+      return this.fb.group({
+        title: ['', Validators.required],
+        detail: ['', Validators.required],
+      });
+    } else if (action == 'footer') {
       return this.fb.group({
         title: ['', Validators.required],
         detail: ['', Validators.required],
@@ -117,13 +159,19 @@ export class PageSettingsComponent {
   onSubmit() {
     let payload = {
       webpageid: 'webpage1',
+      header: this.pageSetForm.value.header,
       home: this.pageSetForm.value.home,
       aboutus: this.pageSetForm.value.aboutus,
       products: this.pageSetForm.value.products,
+      contactus: this.pageSetForm.value.contactus,
+      footer: this.pageSetForm.value.footer,
     };
     this.crudService.updateWebContent(1, payload).subscribe(() => {
       this.getWebPageDataById();
     });
+  }
+  get header(): FormArray {
+    return this.pageSetForm.get('header') as FormArray;
   }
   get home(): FormArray {
     return this.pageSetForm.get('home') as FormArray;
@@ -134,10 +182,19 @@ export class PageSettingsComponent {
   get products(): FormArray {
     return this.pageSetForm.get('products') as FormArray;
   }
+  get contactus(): FormArray {
+    return this.pageSetForm.get('contactus') as FormArray;
+  }
+  get footer(): FormArray {
+    return this.pageSetForm.get('footer') as FormArray;
+  }
 
   // Add a new set of controls
   addItem(action: string): void {
     switch (action) {
+      case 'header':
+        this.header.push(this.createItem('header'));
+        break;
       case 'home':
         this.home.push(this.createItem('home'));
         break;
@@ -147,6 +204,12 @@ export class PageSettingsComponent {
       case 'products':
         this.products.push(this.createItem('products'));
         break;
+      case 'contactus':
+        this.contactus.push(this.createItem('contactus'));
+        break;
+      case 'footer':
+        this.footer.push(this.createItem('footer'));
+        break;
       default:
         this.home.push(this.createItem('home'));
         break;
@@ -154,6 +217,21 @@ export class PageSettingsComponent {
   }
   removeItem(action: string): void {
     switch (action) {
+      case 'header':
+        if (this.header.length > 0) {
+          this.header.removeAt(this.header.length - 1);
+        }
+        break;
+      case 'contactus':
+        if (this.contactus.length > 0) {
+          this.contactus.removeAt(this.contactus.length - 1);
+        }
+        break;
+      case 'footer':
+        if (this.footer.length > 0) {
+          this.footer.removeAt(this.footer.length - 1);
+        }
+        break;
       case 'home':
         if (this.home.length > 0) {
           this.home.removeAt(this.home.length - 1);

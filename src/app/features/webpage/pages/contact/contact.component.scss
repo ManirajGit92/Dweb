@@ -29,7 +29,7 @@
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 20px;
-  color: #1a237e;
+  color: #837fce;
 }
 
 /* Contact Info Links */
@@ -57,10 +57,10 @@
 .toggle-btns button {
   flex: 1;
   padding: 10px 0;
-  border: 1px solid #1a237e;
+  border: 1px solid #837fce;
   border-radius: 30px;
   background: #fff;
-  color: #1a237e;
+  color: #837fce;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -68,7 +68,7 @@
 
 .toggle-btns button.active,
 .toggle-btns button:hover {
-  background: #1a237e;
+  background: #837fce;
   color: #fff;
 }
 
@@ -96,7 +96,7 @@ textarea {
 
 input:focus,
 textarea:focus {
-  border-color: #1a237e;
+  border-color: #837fce;
   box-shadow: 0 0 5px rgba(26, 35, 126, 0.3);
 }
 
@@ -110,7 +110,7 @@ textarea {
   padding: 12px 28px;
   border: none;
   border-radius: 25px;
-  background: #1a237e;
+  background: #837fce;
   color: white;
   font-weight: 600;
   cursor: pointer;
@@ -158,7 +158,7 @@ textarea {
 .chat-input button {
   padding: 0 20px;
   border: none;
-  background: #1a237e;
+  background: #837fce;
   color: white;
   cursor: pointer;
 }

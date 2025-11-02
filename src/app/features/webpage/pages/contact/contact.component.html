@@ -11,20 +11,20 @@
 
     <!-- Contact Links -->
     <div class="contact-links">
-      <p><strong>Address:</strong> {{ address }}</p>
-      <p><strong>Email:</strong> <a href="mailto:{{email}}">{{email}}</a></p>
-      <p><strong>WhatsApp:</strong> <a href="https://wa.me/{{phone }}" target="_blank">{{phone}}</a>
+      <p *ngIf="address"><strong>Address:</strong> {{ address }}</p>
+      <p *ngIf="email"><strong>Email:</strong> <a href="mailto:{{email}}">{{email}}</a></p>
+      <p *ngIf="phone"><strong>WhatsApp:</strong> <a href="https://wa.me/{{phone }}" target="_blank">{{phone}}</a>
       </p>
     </div>
 
     <!-- Toggle Buttons -->
     <div class="toggle-btns">
-      <button (click)="toggleView('email')" [class.active]="!isChatView">Email Form</button>
-      <button (click)="toggleView('chat')" [class.active]="isChatView">Chat</button>
+      <button *ngIf="email" (click)="toggleView('email')" [class.active]="!isChatView">Email Form</button>
+      <button *ngIf="phone" (click)="toggleView('chat')" [class.active]="isChatView">Chat</button>
     </div>
 
     <!-- Email Form -->
-    <form *ngIf="!isChatView" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+    <form *ngIf="!isChatView && email" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="name">Your Name</label>
         <input id="name" formControlName="name" placeholder="Enter your name" />
@@ -45,7 +45,7 @@
     </form>
 
     <!-- Chat Box -->
-    <div *ngIf="isChatView" class="chat-box">
+    <div *ngIf="isChatView && phone" class="chat-box">
       <div class="chat-messages">
         <p>Hi! How can we help you today?</p>
       </div>

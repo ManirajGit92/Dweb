@@ -14,6 +14,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CrudService } from '../../../../core/services/crud.service';
 import { DropdownModule } from 'primeng/dropdown';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-page-settings',
@@ -27,6 +29,7 @@ import { DropdownModule } from 'primeng/dropdown';
     CardModule,
     CommonModule,
     DropdownModule,
+    ToastModule,
   ],
   templateUrl: './page-settings.component.html',
   styleUrl: './page-settings.component.scss',
@@ -43,13 +46,40 @@ export class PageSettingsComponent {
     { label: 'Scroll', value: 'scroll' },
     { label: 'Navigate', value: 'navigate' },
   ];
-  constructor(private fb: FormBuilder, private crudService: CrudService) {}
+  webSettings: any = {
+    logo: 'https://cdn-icons-png.flaticon.com/512/4257/4257824.png',
+    sitename: 'NewDweb',
+    font: '',
+    textcolor: '',
+    darktheme: '0',
+  };
+  constructor(
+    private fb: FormBuilder,
+    private crudService: CrudService,
+    private messageService: MessageService
+  ) {}
   ngOnInit() {
     this.getWebPageDataById();
   }
-
+  show(
+    severity: string = 'info',
+    summary: string = 'Info',
+    detail: string = 'Message Content',
+    life: number = 3000
+  ) {
+    this.messageService.add({
+      severity: severity,
+      summary: summary,
+      detail: detail,
+      life: life,
+    });
+  }
   getWebPageDataById() {
     this.crudService.getWebContentById(1).subscribe((data: any) => {
+      this.pageSetForm.patchValue({
+        logo: data.settings.logo,
+        sitename: data.settings.sitename,
+      });
       data.header?.forEach((item: any) => {
         this.header.push(
           this.fb.group({
@@ -157,6 +187,8 @@ export class PageSettingsComponent {
   }
 
   onSubmit() {
+    this.webSettings.logo = this.pageSetForm.value.logo;
+    this.webSettings.sitename = this.pageSetForm.value.sitename;
     let payload = {
       webpageid: 'webpage1',
       header: this.pageSetForm.value.header,
@@ -165,9 +197,11 @@ export class PageSettingsComponent {
       products: this.pageSetForm.value.products,
       contactus: this.pageSetForm.value.contactus,
       footer: this.pageSetForm.value.footer,
+      settings: this.webSettings,
     };
     this.crudService.updateWebContent(1, payload).subscribe(() => {
-      this.getWebPageDataById();
+      //this.getWebPageDataById();
+      this.show('success', 'Success', 'Content Updated Successfully', 3000);
     });
   }
   get header(): FormArray {

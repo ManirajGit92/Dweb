@@ -1,4 +1,5 @@
 <form [formGroup]="pageSetForm" (ngSubmit)="onSubmit()">
+  <p-toast />
   <p-accordion [multiple]="false">
     <p-accordionTab header="Header" [selected]="true">
       <!-- Header -->
@@ -53,11 +54,11 @@
         <div class="grid">
           <div class="col-12 lg:col-4 md:col-4 sm:col-12">
             <button pButton type="button" label="Add More" icon="pi pi-plus"
-              class="p-button-sm p-button-success ml-2 w-full" (click)="addItem('home')"></button>
+              class="p-button-sm p-button-success ml-2 w-full" (click)="addItem('header')"></button>
           </div>
           <div class="col-12 lg:col-4 md:col-4 sm:col-12">
             <button pButton type="button" label="Remove Last" icon="pi pi-minus"
-              class="p-button-sm p-button-danger ml-2 w-full" (click)="removeItem('home')"
+              class="p-button-sm p-button-danger ml-2 w-full" (click)="removeItem('header')"
               [disabled]="home.length<=1"></button>
           </div>
           <div class="col-12 lg:col-4 md:col-4 sm:col-12">
@@ -204,12 +205,12 @@
         <div class="grid">
           <div class="col-12 lg:col-4 md:col-4 sm:col-12">
             <button pButton type="button" label="Add More" icon="pi pi-plus"
-              class="p-button-sm p-button-success ml-2 w-full" (click)="addItem('products')"></button>
+              class="p-button-sm p-button-success ml-2 w-full" (click)="addItem('contactus')"></button>
           </div>
           <div class="col-12 lg:col-4 md:col-4 sm:col-12">
             <button pButton type="button" label="Remove Last" icon="pi pi-minus"
-              class="p-button-sm p-button-danger ml-2 w-full" (click)="removeItem('products')"
-              [disabled]="products.length<=1"></button>
+              class="p-button-sm p-button-danger ml-2 w-full" (click)="removeItem('contactus')"
+              [disabled]="contactus.length<=1"></button>
           </div>
           <div class="col-12 lg:col-4 md:col-4 sm:col-12">
             <button pButton type="submit" label="Save" icon="pi pi-save"
@@ -240,12 +241,12 @@
         <div class="grid">
           <div class="col-12 lg:col-4 md:col-4 sm:col-12">
             <button pButton type="button" label="Add More" icon="pi pi-plus"
-              class="p-button-sm p-button-success ml-2 w-full" (click)="addItem('products')"></button>
+              class="p-button-sm p-button-success ml-2 w-full" (click)="addItem('footer')"></button>
           </div>
           <div class="col-12 lg:col-4 md:col-4 sm:col-12">
             <button pButton type="button" label="Remove Last" icon="pi pi-minus"
-              class="p-button-sm p-button-danger ml-2 w-full" (click)="removeItem('products')"
-              [disabled]="products.length<=1"></button>
+              class="p-button-sm p-button-danger ml-2 w-full" (click)="removeItem('footer')"
+              [disabled]="footer.length<=1"></button>
           </div>
           <div class="col-12 lg:col-4 md:col-4 sm:col-12">
             <button pButton type="submit" label="Save" icon="pi pi-save"

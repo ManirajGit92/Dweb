@@ -4,6 +4,7 @@
     <div class="cards-grid">
       <div class="service-card" *ngFor="let data of configData">
         <h3>{{ data.title }}</h3>
+        <img [src]="data.image" alt="{{ data.title }}" class="service-image" />
         <p>{{ data.detail }}</p>
       </div>
     </div>

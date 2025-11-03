@@ -126,6 +126,7 @@ export class PageSettingsComponent {
         this.products.push(
           this.fb.group({
             title: [item.title, Validators.required],
+            image: [item.image, Validators.required],
             detail: [item.detail, Validators.required],
           })
         );
@@ -165,6 +166,7 @@ export class PageSettingsComponent {
     } else if (action == 'products') {
       return this.fb.group({
         title: ['', Validators.required],
+        image: ['', Validators.required],
         detail: ['', Validators.required],
       });
     } else if (action == 'contactus') {

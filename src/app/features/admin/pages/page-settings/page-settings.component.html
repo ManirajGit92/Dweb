@@ -157,6 +157,11 @@
                 <input pInputText id="title-{{i}}" formControlName="title" placeholder="Enter Title"
                   class="p-inputtext-sm w-full mt-2" />
               </div>
+              <div class="p-field mb-2">
+                <label for="title-{{i}}" class="font-bold text-blue-600">Title {{ i + 1 }}</label>
+                <input pInputText id="image-{{i}}" formControlName="image" placeholder="Enter Image URL"
+                  class="p-inputtext-sm w-full mt-2" />
+              </div>
               <div class="p-field ">
                 <label for="desc-{{i}}" class="mb-2 font-bold text-blue-600">Detail {{ i + 1 }}</label>
                 <textarea pInputTextarea id="desc-{{i}}" formControlName="detail" placeholder="Enter Detail"

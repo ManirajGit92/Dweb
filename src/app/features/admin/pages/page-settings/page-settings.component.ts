@@ -284,9 +284,43 @@ export class PageSettingsComponent {
         }
         break;
       default:
-        if (this.home.length > 0) {
-          this.home.removeAt(this.home.length - 1);
+        break;
+    }
+  }
+  deleteMenu(section: string, index: number) {
+    console.log(index);
+    switch (section) {
+      case 'header':
+        if (this.header.length > 0) {
+          this.header.removeAt(index);
         }
+        break;
+      case 'contactus':
+        if (this.contactus.length > 0) {
+          this.contactus.removeAt(index);
+        }
+        break;
+      case 'footer':
+        if (this.footer.length > 0) {
+          this.footer.removeAt(index);
+        }
+        break;
+      case 'home':
+        if (this.home.length > 0) {
+          this.home.removeAt(index);
+        }
+        break;
+      case 'aboutus':
+        if (this.aboutus.length > 0) {
+          this.aboutus.removeAt(index);
+        }
+        break;
+      case 'products':
+        if (this.products.length > 0) {
+          this.products.removeAt(index);
+        }
+        break;
+      default:
         break;
     }
   }

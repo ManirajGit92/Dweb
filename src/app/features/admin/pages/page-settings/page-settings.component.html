@@ -19,6 +19,13 @@
         <div formArrayName="header">
           <div *ngFor="let item of header.controls; let i = index" [formGroupName]="i" class="mb-3">
             <div class="card p-3">
+              <div class="card-header flex justify-between items-center ">
+                <h3 class="font-semibold text-sm">Menu {{ i + 1 }}</h3>
+                <button type="button" class="p-button p-button-text p-button-sm text-red-500 p-0"
+                  (click)="deleteMenu('header',i)" title="Delete">
+                  <i class="pi pi-trash"></i>
+                </button>
+              </div>
               <div class="p-field grid align-items-center gap-3">
                 <!-- Textbox -->
                 <div class="col-6">
@@ -28,7 +35,6 @@
                   <input pInputText id="menuLabel-{{ i }}" formControlName="title" placeholder="Enter Menu Label"
                     class="p-inputtext-sm w-full" />
                 </div>
-
                 <!-- Dropdown -->
                 <div class="col-6">
                   <label for="title-{{ i }}" class="font-bold text-blue-600 block mb-2">
@@ -38,8 +44,6 @@
                     placeholder="Select an Option" class="w-full" appendTo="body"></p-dropdown>
                 </div>
               </div>
-
-              <!-- Menu Link (Full width) -->
               <div class="p-field mt-3">
                 <label for="menuLink-{{ i }}" class="font-bold text-blue-600 block mb-2">
                   Menu Link {{ i + 1 }}
@@ -74,6 +78,13 @@
         <div formArrayName="home">
           <div *ngFor="let item of home.controls; let i = index" [formGroupName]="i" class="mb-3 ">
             <div class="card">
+              <div class="card-header flex justify-between items-center ">
+                <h3 class="font-semibold text-sm">Home {{ i + 1 }}</h3>
+                <button type="button" class="p-button p-button-text p-button-sm text-red-500 p-0"
+                  (click)="deleteMenu('header',i)" title="Delete">
+                  <i class="pi pi-trash"></i>
+                </button>
+              </div>
               <div class="p-field mb-2">
                 <label for="homeImage-{{i}}" class="font-bold text-teal-600">Image {{ i + 1 }}</label>
                 <input pInputText id="homeImage-{{i}}" formControlName="image" placeholder="Enter Image URL"
@@ -116,6 +127,13 @@
         <div formArrayName="aboutus">
           <div *ngFor="let item of aboutus.controls; let i = index" [formGroupName]="i" class="mb-3 ">
             <div class="card">
+              <div class="card-header flex justify-between items-center ">
+                <h3 class="font-semibold text-sm">Aboutus {{ i + 1 }}</h3>
+                <button type="button" class="p-button p-button-text p-button-sm text-red-500 p-0"
+                  (click)="deleteMenu('header',i)" title="Delete">
+                  <i class="pi pi-trash"></i>
+                </button>
+              </div>
               <div class="p-field mb-2">
                 <label for="title-{{i}}" class="font-bold text-blue-600">Title {{ i + 1 }}</label>
                 <input pInputText id="title-{{i}}" formControlName="title" placeholder="Enter Title"
@@ -152,6 +170,13 @@
         <div formArrayName="products">
           <div *ngFor="let item of products.controls; let i = index" [formGroupName]="i" class="mb-3 ">
             <div class="card">
+              <div class="card-header flex justify-between items-center ">
+                <h3 class="font-semibold text-sm">Products {{ i + 1 }}</h3>
+                <button type="button" class="p-button p-button-text p-button-sm text-red-500 p-0"
+                  (click)="deleteMenu('header',i)" title="Delete">
+                  <i class="pi pi-trash"></i>
+                </button>
+              </div>
               <div class="p-field mb-2">
                 <label for="title-{{i}}" class="font-bold text-blue-600">Title {{ i + 1 }}</label>
                 <input pInputText id="title-{{i}}" formControlName="title" placeholder="Enter Title"
@@ -193,6 +218,13 @@
         <div formArrayName="contactus">
           <div *ngFor="let item of contactus.controls; let i = index" [formGroupName]="i" class="mb-3 ">
             <div class="card">
+              <div class="card-header flex justify-between items-center ">
+                <h3 class="font-semibold text-sm">Contactus {{ i + 1 }}</h3>
+                <button type="button" class="p-button p-button-text p-button-sm text-red-500 p-0"
+                  (click)="deleteMenu('header',i)" title="Delete">
+                  <i class="pi pi-trash"></i>
+                </button>
+              </div>
               <div class="p-field mb-2 w-full">
                 <label for="title-{{ i }}" class="font-bold text-blue-600">Title {{ i + 1 }}</label>
                 <p-dropdown id="title-{{ i }}" formControlName="title" [options]="contactusOptions" optionLabel="label"
@@ -230,6 +262,13 @@
         <div formArrayName="footer">
           <div *ngFor="let item of footer.controls; let i = index" [formGroupName]="i" class="mb-3 ">
             <div class="card">
+              <div class="card-header flex justify-between items-center ">
+                <h3 class="font-semibold text-sm">Footer {{ i + 1 }}</h3>
+                <button type="button" class="p-button p-button-text p-button-sm text-red-500 p-0"
+                  (click)="deleteMenu('header',i)" title="Delete">
+                  <i class="pi pi-trash"></i>
+                </button>
+              </div>
               <div class="p-field mb-2">
                 <label for="title-{{i}}" class="font-bold text-blue-600">Title {{ i + 1 }}</label>
                 <input pInputText id="title-{{i}}" formControlName="title" placeholder="Enter Title"

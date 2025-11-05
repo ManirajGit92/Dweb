@@ -17,5 +17,6 @@ export const ApiPaths = {
     GET_ALL: 'webpage',
     GET_BY_ID: (id: number) => `/${id}`,
     UPDATE: (id: number) => `/${id}`,
+    resetWebPage: 'resetwebpage',
   },
 };

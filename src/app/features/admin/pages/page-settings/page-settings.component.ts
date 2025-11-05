@@ -324,4 +324,9 @@ export class PageSettingsComponent {
         break;
     }
   }
+  resetAll() {
+    this.crudService.resetAllWebContent().subscribe(() => {
+      this.show('success', 'Success', 'Table Reset Successfully', 3000);
+    });
+  }
 }

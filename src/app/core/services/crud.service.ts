@@ -21,6 +21,7 @@ export class CrudService {
   private apiPaths = ApiPaths;
   private usersPath = this.apiBaseUrl + this.apiPaths.USER.GET_ALL;
   private webPath = this.apiBaseUrl + this.apiPaths.WEBPAGE.GET_ALL;
+  private resetWebPath = this.apiBaseUrl + this.apiPaths.WEBPAGE.resetWebPage;
   constructor(private http: HttpClient) {}
   // *******Users CRUD Operations***********
   addUsers(data: Users): Observable<any> {
@@ -62,5 +63,9 @@ export class CrudService {
 
   deleteWebContent(id: number): Observable<any> {
     return this.http.delete(`${this.webPath}/${id}`);
+  }
+
+  resetAllWebContent(): Observable<any[]> {
+    return this.http.get<any[]>(this.resetWebPath);
   }
 }

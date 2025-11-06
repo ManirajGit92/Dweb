@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { Observable } from 'rxjs';
 import { JsonPipe } from '@angular/common';
 import { HeaderComponent } from '../../../../shared/components/header/header.component';
@@ -43,13 +43,27 @@ export class MainComponent {
   feedbackData: any;
   contactData: any;
   configData: any;
-
-  constructor(private crudService: CrudService) {}
+  siteName: string | number = '';
+  constructor(
+    private crudService: CrudService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
-    this.getWebContent();
+    this.getUrlData();
   }
-
+  getUrlData() {
+    this.route.queryParamMap.subscribe((params) => {
+      if (
+        params.get('sitename') != null &&
+        params.get('sitename') != '' &&
+        params.get('sitename') != undefined
+      ) {
+        this.siteName = params.get('sitename')!.toString();
+        this.getWebContent();
+      }
+    });
+  }
   scrollTo(sectionId: string, event: Event) {
     event.preventDefault(); // prevent default anchor behavior
     const element = document.getElementById(sectionId);
@@ -59,8 +73,18 @@ export class MainComponent {
   }
 
   getWebContent() {
-    this.crudService.getAllWebContent().subscribe((data: any[]) => {
-      this.configData = data;
-    });
+    // this.crudService.getAllWebContent().subscribe((data: any[]) => {
+    //   this.configData = data;
+    // });
+    if (isNaN(+this.siteName)) {
+      this.siteName = 1;
+    } else {
+      this.siteName = +this.siteName;
+    }
+    this.crudService
+      .getWebContentById(this.siteName)
+      .subscribe((data: any[]) => {
+        this.configData = data;
+      });
   }
 }

@@ -5,14 +5,13 @@ import { LoginComponent } from './features/auth/pages/login/login.component';
 import { SignupComponent } from './features/auth/pages/signup/signup.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'main', pathMatch: 'full' }, // Default route
+  { path: '', redirectTo: 'main?sitename=mysite1', pathMatch: 'full' }, // Default route with query param
   { path: 'main', component: MainComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: '**', redirectTo: 'main' }, // Wildcard route (for 404)
+  { path: '**', redirectTo: 'main?sitename=mysite1' }, // Wildcard route with query param
 ];
-
 // import { Routes } from '@angular/router';
 // import { AuthGuard } from './core/guards/auth.guard';
 

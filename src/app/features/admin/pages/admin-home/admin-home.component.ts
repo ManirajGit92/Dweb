@@ -7,7 +7,7 @@ import {
   animate,
 } from '@angular/animations';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsComponent } from '../products/products.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { UsersComponent } from '../users/users.component';
@@ -57,8 +57,22 @@ export class AdminComponent {
     'Logout',
     'Back',
   ];
-  constructor(private router: Router) {}
-
+  siteName: string | number = '';
+  constructor(private router: Router, private route: ActivatedRoute) {}
+  ngOnInit() {
+    this.getUrlData();
+  }
+  getUrlData() {
+    this.route.queryParamMap.subscribe((params) => {
+      if (
+        params.get('sitename') != null &&
+        params.get('sitename') != '' &&
+        params.get('sitename') != undefined
+      ) {
+        this.siteName = params.get('sitename')!.toString();
+      }
+    });
+  }
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
   }
@@ -68,7 +82,9 @@ export class AdminComponent {
     this.highlightTop = index * 48; // adjust based on your li height
     this.screen = this.menuItems[index];
     if (this.menuItems[index]?.toLowerCase() === 'back') {
-      this.router.navigate(['main']);
+      this.router.navigate(['main'], {
+        queryParams: { sitename: this.siteName },
+      });
     }
   }
 }

@@ -53,8 +53,8 @@ export class CrudService {
     return this.http.get<any[]>(this.webPath);
   }
 
-  getWebContentById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.webPath}/${id}`);
+  getWebContentById(siteName: string): Observable<any> {
+    return this.http.get<any>(`${this.webPath}/${siteName}`);
   }
 
   updateWebContent(id: number, data: any): Observable<any> {

@@ -16,6 +16,7 @@ import { CrudService } from '../../../../core/services/crud.service';
 import { DropdownModule } from 'primeng/dropdown';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { GlobalContants } from '../../../../core/constants/global.constants';
 
 @Component({
   selector: 'app-page-settings',
@@ -53,6 +54,7 @@ export class PageSettingsComponent {
     textcolor: '',
     darktheme: '0',
   };
+  siteName: string = GlobalContants.siteName;
   constructor(
     private fb: FormBuilder,
     private crudService: CrudService,
@@ -75,7 +77,7 @@ export class PageSettingsComponent {
     });
   }
   getWebPageDataById() {
-    this.crudService.getWebContentById(1).subscribe((data: any) => {
+    this.crudService.getWebContentById(this.siteName).subscribe((data: any) => {
       this.pageSetForm.patchValue({
         logo: data.settings.logo,
         sitename: data.settings.sitename,

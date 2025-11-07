@@ -12,7 +12,7 @@ import { ScheduleComponent } from '../schedule/schedule.component';
 import { FeedbackComponent } from '../feedback/feedback.component';
 import { LoginComponent } from '../../../auth/pages/login/login.component';
 import { CrudService } from '../../../../core/services/crud.service';
-import { WebHomeConfig } from '../../../../shared/models/webpage.model';
+import { GlobalContants } from '../../../../core/constants/global.constants';
 
 @Component({
   selector: 'app-main',
@@ -43,7 +43,7 @@ export class MainComponent {
   feedbackData: any;
   contactData: any;
   configData: any;
-  siteName: string | number = '';
+  siteName: string = GlobalContants.siteName;
   constructor(
     private crudService: CrudService,
     private route: ActivatedRoute
@@ -54,14 +54,13 @@ export class MainComponent {
   }
   getUrlData() {
     this.route.queryParamMap.subscribe((params) => {
-      if (
-        params.get('sitename') != null &&
-        params.get('sitename') != '' &&
-        params.get('sitename') != undefined
-      ) {
-        this.siteName = params.get('sitename')!.toString();
-        this.getWebContent();
+      const paramSite = params.get('sitename');
+      if (!paramSite) {
+        this.siteName = GlobalContants.siteName ?? '';
+      } else {
+        this.siteName = paramSite;
       }
+      this.getWebContent();
     });
   }
   scrollTo(sectionId: string, event: Event) {
@@ -73,14 +72,6 @@ export class MainComponent {
   }
 
   getWebContent() {
-    // this.crudService.getAllWebContent().subscribe((data: any[]) => {
-    //   this.configData = data;
-    // });
-    if (isNaN(+this.siteName)) {
-      this.siteName = 1;
-    } else {
-      this.siteName = +this.siteName;
-    }
     this.crudService
       .getWebContentById(this.siteName)
       .subscribe((data: any[]) => {

@@ -38,7 +38,7 @@
     @case('Users') { <app-users></app-users> }
     @case('Dashboard') { <app-dashboard></app-dashboard> }
     @case('Products') { <app-products></app-products> }
-    @case('Pages') { <app-page-settings></app-page-settings> }
+    @case('Pages') { <app-page-settings [configData]="{siteName:siteName}"></app-page-settings> }
     @default { }
     }
   </div>

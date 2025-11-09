@@ -72,6 +72,8 @@ export class HeaderComponent {
 
   navigate(route: string) {
     // Implement navigation logic here, e.g., using Angular Router
-    this.router.navigate([route]);
+    this.router.navigate([route], {
+      queryParams: { sitename: this.configData.siteName },
+    });
   }
 }

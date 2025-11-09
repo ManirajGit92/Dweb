@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -55,6 +55,7 @@ export class PageSettingsComponent {
     darktheme: '0',
   };
   siteName: string = GlobalContants.siteName;
+  @Input() configData: any;
   constructor(
     private fb: FormBuilder,
     private crudService: CrudService,
@@ -62,6 +63,7 @@ export class PageSettingsComponent {
   ) {}
   ngOnInit() {
     this.getWebPageDataById();
+    this.siteName = this.configData.siteName;
   }
   show(
     severity: string = 'info',
@@ -77,63 +79,65 @@ export class PageSettingsComponent {
     });
   }
   getWebPageDataById() {
-    this.crudService.getWebContentById(this.siteName).subscribe((data: any) => {
-      this.pageSetForm.patchValue({
-        logo: data.settings.logo,
-        sitename: data.settings.sitename,
+    this.crudService
+      .getWebContentById(this.configData.siteName)
+      .subscribe((data: any) => {
+        this.pageSetForm.patchValue({
+          logo: data.settings.logo,
+          sitename: data.settings.sitename,
+        });
+        data.header?.forEach((item: any) => {
+          this.header.push(
+            this.fb.group({
+              title: [item.title, Validators.required],
+              detail: [item.detail, Validators.required],
+              type: [item.type, Validators.required],
+            })
+          );
+        });
+        data.footer?.forEach((item: any) => {
+          this.footer.push(
+            this.fb.group({
+              title: [item.title, Validators.required],
+              detail: [item.detail, Validators.required],
+            })
+          );
+        });
+        data.contactus?.forEach((item: any) => {
+          this.contactus.push(
+            this.fb.group({
+              title: [item.title, Validators.required],
+              detail: [item.detail, Validators.required],
+            })
+          );
+        });
+        data.home.forEach((item: any) => {
+          this.home.push(
+            this.fb.group({
+              image: [item.image, Validators.required],
+              title: [item.title, Validators.required],
+              detail: [item.detail],
+            })
+          );
+        });
+        data.aboutus.forEach((item: any) => {
+          this.aboutus.push(
+            this.fb.group({
+              title: [item.title, Validators.required],
+              detail: [item.detail, Validators.required],
+            })
+          );
+        });
+        data.products.forEach((item: any) => {
+          this.products.push(
+            this.fb.group({
+              title: [item.title, Validators.required],
+              image: [item.image, Validators.required],
+              detail: [item.detail, Validators.required],
+            })
+          );
+        });
       });
-      data.header?.forEach((item: any) => {
-        this.header.push(
-          this.fb.group({
-            title: [item.title, Validators.required],
-            detail: [item.detail, Validators.required],
-            type: [item.type, Validators.required],
-          })
-        );
-      });
-      data.footer?.forEach((item: any) => {
-        this.footer.push(
-          this.fb.group({
-            title: [item.title, Validators.required],
-            detail: [item.detail, Validators.required],
-          })
-        );
-      });
-      data.contactus?.forEach((item: any) => {
-        this.contactus.push(
-          this.fb.group({
-            title: [item.title, Validators.required],
-            detail: [item.detail, Validators.required],
-          })
-        );
-      });
-      data.home.forEach((item: any) => {
-        this.home.push(
-          this.fb.group({
-            image: [item.image, Validators.required],
-            title: [item.title, Validators.required],
-            detail: [item.detail],
-          })
-        );
-      });
-      data.aboutus.forEach((item: any) => {
-        this.aboutus.push(
-          this.fb.group({
-            title: [item.title, Validators.required],
-            detail: [item.detail, Validators.required],
-          })
-        );
-      });
-      data.products.forEach((item: any) => {
-        this.products.push(
-          this.fb.group({
-            title: [item.title, Validators.required],
-            image: [item.image, Validators.required],
-            detail: [item.detail, Validators.required],
-          })
-        );
-      });
-    });
   }
 
   pageSetFormGroup() {
@@ -194,7 +198,7 @@ export class PageSettingsComponent {
     this.webSettings.logo = this.pageSetForm.value.logo;
     this.webSettings.sitename = this.pageSetForm.value.sitename;
     let payload = {
-      webpageid: 'webpage1',
+      webpageid: this.configData.siteName,
       header: this.pageSetForm.value.header,
       home: this.pageSetForm.value.home,
       aboutus: this.pageSetForm.value.aboutus,
@@ -203,10 +207,12 @@ export class PageSettingsComponent {
       footer: this.pageSetForm.value.footer,
       settings: this.webSettings,
     };
-    this.crudService.updateWebContent(1, payload).subscribe(() => {
-      //this.getWebPageDataById();
-      this.show('success', 'Success', 'Content Updated Successfully', 3000);
-    });
+    this.crudService
+      .updateWebContent(this.configData.siteName, payload)
+      .subscribe(() => {
+        //this.getWebPageDataById();
+        this.show('success', 'Success', 'Content Updated Successfully', 3000);
+      });
   }
   get header(): FormArray {
     return this.pageSetForm.get('header') as FormArray;

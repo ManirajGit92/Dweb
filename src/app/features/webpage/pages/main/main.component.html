@@ -1,5 +1,5 @@
 @if (configData) {
-<app-header [configData]="{settings:configData.settings,header:configData.header}"></app-header>
+<app-header [configData]="{settings:configData.settings,header:configData.header,siteName:siteName}"></app-header>
 <main>
   <app-home id="home" [configData]="configData.home"></app-home>
   <app-about id="about" [configData]="configData.aboutus"></app-about>
